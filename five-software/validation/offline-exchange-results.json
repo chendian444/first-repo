@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "check": "算法库导出 10 条真实画像，关闭算法库后由独立策略软件导入并完成排名",
+  "selected": "DEFLATE"
+}

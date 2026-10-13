@@ -1,0 +1,27 @@
+[
+  {
+    "project": "01-network-monitor",
+    "passed": true,
+    "test": "only app.jar + launchers copied to isolated path containing spaces; launched from /tmp"
+  },
+  {
+    "project": "02-adaptive-strategy",
+    "passed": true,
+    "test": "only app.jar + launchers copied to isolated path containing spaces; launched from /tmp"
+  },
+  {
+    "project": "03-rate-prediction",
+    "passed": true,
+    "test": "only app.jar + launchers copied to isolated path containing spaces; launched from /tmp"
+  },
+  {
+    "project": "04-compression-library",
+    "passed": true,
+    "test": "only app.jar + launchers copied to isolated path containing spaces; launched from /tmp"
+  },
+  {
+    "project": "05-transfer-manager",
+    "passed": true,
+    "test": "only app.jar + launchers copied to isolated path containing spaces; launched from /tmp"
+  }
+]

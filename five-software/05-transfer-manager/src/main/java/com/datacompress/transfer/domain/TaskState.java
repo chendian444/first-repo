@@ -1,0 +1,3 @@
+package com.datacompress.transfer.domain;
+
+public enum TaskState { QUEUED, PROFILING, WAITING_NETWORK, TRANSMITTING, VERIFYING, COMPLETED, FAILED, CACHED, RETRYING, PAUSED, CANCELLED }

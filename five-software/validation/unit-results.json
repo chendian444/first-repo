@@ -1,0 +1,42 @@
+[
+  {
+    "project": "04-compression-library",
+    "name": "com.datacompress.library.algorithm.CoreCompressionTest",
+    "tests": "1",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0"
+  },
+  {
+    "project": "05-transfer-manager",
+    "name": "com.datacompress.transfer.service.PackagePayloadServiceTest",
+    "tests": "2",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0"
+  },
+  {
+    "project": "01-network-monitor",
+    "name": "com.datacompress.monitor.TelemetryIsolationTest",
+    "tests": "3",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0"
+  },
+  {
+    "project": "02-adaptive-strategy",
+    "name": "com.datacompress.strategy.StrategySelectionTest",
+    "tests": "4",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0"
+  },
+  {
+    "project": "03-rate-prediction",
+    "name": "com.datacompress.prediction.PredictionModelTest",
+    "tests": "5",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0"
+  }
+]
