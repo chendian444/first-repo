@@ -1,0 +1,420 @@
+{
+  "files": [
+    {
+      "file": "backend/src/test/java/com/datacompress/control/DataCompressControlApplicationTests.java",
+      "sha256": "eddaa74da65e2fc6b1d329d65d8342ec0ed674155302e9e66579025992ad04ef",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/test/java/com/datacompress/control/algorithm/CoreCompressionTest.java",
+      "sha256": "ec8e517d801161fcc299ed7882a75ea503450fa041b1ed5be81387e4b2152613",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/test/java/com/datacompress/control/service/PackagePayloadServiceTest.java",
+      "sha256": "4a10cb88b56cc527b91553b3de18b07b41dd3c12f54dd5232c0258c86442c1ca",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/resources/application.properties",
+      "sha256": "9d9a1258c04a374ef8e4362a1645b280a5aace885ddd5f6137cd33948c76057b",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/resources/static/index.html",
+      "sha256": "ac399133b16ed38cb05ec5be1ae7b2afff7a7a36bd4e4dabe0f481676737b6dd",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/resources/static/app.js",
+      "sha256": "52fed8b187a2491b93c1622ef3f5d3c279d8b0610a8ed02857b78743736fbded",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/resources/static/styles.css",
+      "sha256": "814ac496c880716bcbcb7dcd582799370a9e8517564879fd3394b033e70d0114",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/resources/model/rate-lstm.json",
+      "sha256": "bd0f21e6dca0af3731b02ba2dbf55cc49f9f684bc78d99a93cb56f0618c12e0b",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/DataCompressControlApplication.java",
+      "sha256": "a6636ff648a742b564963d15a6297be970ef46c41ac64d847f7d501b1d8148c9",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/controller/TransferController.java",
+      "sha256": "204875855acacb14198ae4261b52d9a528057352505bbe6aac6e93262fedec6f",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/controller/AlarmController.java",
+      "sha256": "a0540f0146178c68fe362ab71c5dd4cc306882d8208499bebe0f084730e0547e",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/controller/DashboardController.java",
+      "sha256": "016882c3381656b7a3d8603af59b939022d614778cf7fa3a65eb39364eb01058",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/controller/GlobalExceptionHandler.java",
+      "sha256": "4064f43700970af9a91719e4ee4ea087ea48e6ce19ebd42c011a01076dbc97b2",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/controller/NetworkController.java",
+      "sha256": "fc95aa91992d60fae30d08fa576db01fd63af7a82dbb052db9044364a6d19798",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/controller/DataSourceController.java",
+      "sha256": "caf7e6bde5e7aba0b9b7d95564baadbb00349508bfad7f6f920242380cf59562",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/BrotliAlgorithm.java",
+      "sha256": "e4472e3f82ea0d8329611cf88a74660fa8ed3cca0152dac6a83a7fd2ff8e3a77",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/GzipAlgorithm.java",
+      "sha256": "d5f7e3b311e6db088b82a293f61c98bc09b9abe34828c7587e05d23679772ba1",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/NoneAlgorithm.java",
+      "sha256": "e92f5421284c86199fd5139e9ab1229ecf210f1b1b92e3dea76dccacb4e715d9",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/ZipAlgorithm.java",
+      "sha256": "f032e36d75d185485b26b026c013d15751d02eb3fc80c29b7241061c19c1453a",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/Lz4Algorithm.java",
+      "sha256": "11d130634919919de26a929308511a35bc4b5966502584e0af436a8850383504",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/LzmaAlgorithm.java",
+      "sha256": "b517ab4e4ea346f08cae2193875e5271a21e7237b101b94781152f50ccc0e0f9",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/AlgorithmRegistry.java",
+      "sha256": "565ee6af6600561b1fdec2811cc6475c98d31fb28b39aca36be53b03441aa6dd",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/SnappyAlgorithm.java",
+      "sha256": "661946ef336645b318fb01b4f9d5d22f539f1ea98402a3bf060d8515d578ad00",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/BaseAlgorithm.java",
+      "sha256": "70718e5c8a4d44b99b5d9c66fa8654719013b342990e06ff7f229de168cf7178",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/DeflateAlgorithm.java",
+      "sha256": "1f81d8d905fa27c0be6643d3cb40adc449388b48f944d811b8f71d5726c6e566",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/ZstdAlgorithm.java",
+      "sha256": "16bf7c30df3cdcce38325f04adf0097144869815c79bf615c909c5ed425bb09b",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/CompressionAlgorithm.java",
+      "sha256": "6e71293113a98385ecbc2d22cf8ab104fb4be944f97a45fd0ed9045657f43347",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/algorithm/Bzip2Algorithm.java",
+      "sha256": "7f2732d5daec758df6df19f4ca4f83ea189df1ee981adef45c877158667a30b1",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/ConnectionState.java",
+      "sha256": "7127a7708464f389925539bb55b83ac942cca8bdb1636768a3ae1b726cac0b10",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/NetworkQuality.java",
+      "sha256": "b43843da725614cf590ed42eee60586af67b0dec62edeb38e27fbaa4772daeb6",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/DataModality.java",
+      "sha256": "50080ee6f8ac78931f4d5d87369b8e2b8eb0f6b387edffbfac74906396c4b4b5",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/RateForecast.java",
+      "sha256": "b7d9a19541146141ab9b0efdb8dca8a9e19b5c76afa64af8d0424f62f3489df7",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/AlarmRecord.java",
+      "sha256": "8fcd4663ce0e95dac6bd7273b9c23a88399e66a8da6e37b294cf11b8b96a794e",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/ChunkMetric.java",
+      "sha256": "12748e215c10417234469068d5976db03d3060826696ff57372ab3c5c0a7f107",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/AlarmLevel.java",
+      "sha256": "f396fb2e7668dc888a369fdfd1b1b7a87c4befd3d8b9ff5c32da849fde4facda",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/RecognitionResult.java",
+      "sha256": "83386ef92acbd7d2ca70c14ec2e05c823acfbd49b1363de133eb70abb3322def",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/TaskState.java",
+      "sha256": "60f0ab971a0c8cb35d06d3759a3a3d24d2e2fafe1ae924907d53403a6aedc469",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/NetworkSample.java",
+      "sha256": "b2bc8d30faca75e5624b356e672e56ab9e4956a1d4b040e640e8e1a57598112d",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/AlarmType.java",
+      "sha256": "14d4c5f6a79f00fd8f9d1baa7203c1681dfe47533f87671c6f02f47dd1f3f08a",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/PriorityDecision.java",
+      "sha256": "e6f5483967afb0cf1372bfc18c1912dc2f6ba466d78448cef416da33d9632652",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/DataSourceInfo.java",
+      "sha256": "88410884eabe2edf99dbf0e3ba0761ead93383904a9f1d60ce2c1ef2b3e60efc",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/TelemetryStatus.java",
+      "sha256": "4a2697773ab12117b7c67ce692324e2691a7bd6ebd5c638943aeae70ee3a4705",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/PredictionHealth.java",
+      "sha256": "0b42536a601a0c86f1af90b5eb9a83a5ed3fc3a6b6adf12cf0d3c3595e9b369a",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/NetworkCurvePoint.java",
+      "sha256": "ff7a586f007d83118ecbd33406b036902cf40a9429c7c1f5ccac04576251e6ef",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/StrategyAdjustment.java",
+      "sha256": "71554a2a1006964275d4eb1cc52bf61f913fc03eaccec95808d74b63467c694a",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/CompressionDecision.java",
+      "sha256": "664f8c733a167d4fd35047782425aff9daf456d3291de990e2f2d6276d1059bf",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/UnifiedDataObject.java",
+      "sha256": "4eb0b8de4e8f46d1ba60a31cae93619dd142ab1b4ba980daae6330108822b4ab",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/DataPriority.java",
+      "sha256": "81bd798732a99015bc4268777a190455feb0252e0ba21d2ede51a3377ca32c90",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/TransferTaskView.java",
+      "sha256": "a419144a5fe65b5459e80da503e2fd144dc12f8ac2aeec9150a704cc9703ac50",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/domain/AlgorithmProfile.java",
+      "sha256": "178b407c0d48d0500554fbebf46ee7d90a263ef0f6f87c7e6af5de0689b02823",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/TransferTaskEntity.java",
+      "sha256": "54e6291775ab88e5b783b67534bac40e4cec2181257f5b0d0970271b123ff979",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/CompressionProfileService.java",
+      "sha256": "ca88d2a9dd51f73019ffceb7224c5ff3412217748a8b2cfde8028da7d1d7a9a0",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/SharedCompressionHistoryService.java",
+      "sha256": "92d5c4e0443493e9f2b8b401f7467b5f1b75c0265b6848ef5fe95ea8e2cd2a2a",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/MultimodalRecognitionService.java",
+      "sha256": "fa30b19498a2585afb379eafec7fb82cd11565acce6ac8c1602e3aabed50b02f",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/TransferTaskService.java",
+      "sha256": "2b58746928468773079526382c1e03c6d0370fc9367189d5148d27c40ace5e63",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/DynamicStrategyService.java",
+      "sha256": "d0d4e5e29a771e7163553fe49e903762598d250bbc45b9dcae815197030c27bd",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/SystemAlarmMonitor.java",
+      "sha256": "8ec55fb5d6e5b9d6c577c4069083a07cdc2d917063e554e8aa13b11e1ffdb8cc",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/PackagePayloadService.java",
+      "sha256": "b05211838f16a74b766c53d8806bdd1edc75a56c2a63616a8502a983d426386e",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/CompactLstmRatePredictor.java",
+      "sha256": "3872b12e40561665f9f8f7f9c81484640f2662a2a0bd4ce4b0b5720fa26076c5",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/NetworkTelemetryService.java",
+      "sha256": "93a546fe45b9cfcf03fe855dd1eb192b897763232cc0b8238712e01dec282e3a",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/DataClassificationService.java",
+      "sha256": "69e840ed54dad0ddcf301696dd66ed5a9f1ea34f3f687e2af811070f14f682f2",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/PredictionFeedbackService.java",
+      "sha256": "599eeb9b514eabfbd50718ffd46e20408488d50c6ed8812832c84d1dd6f32214",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/NetworkAlarmMonitor.java",
+      "sha256": "31e88541bc6ea64d4427b897493cebec152fc9ecff89c72f79e321ca53194478",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/AlarmService.java",
+      "sha256": "32bcb93a140de1dc7c822fd25de3caa84cf5462a7d1227f53c4726c7960eb46e",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/ReceiverService.java",
+      "sha256": "8692cb6b96c4c407f8bfedc8d0a66dc103cbb4ae651deb7de9d8bb76efde0d77",
+      "unchanged": true
+    },
+    {
+      "file": "backend/src/main/java/com/datacompress/control/service/DataSourceService.java",
+      "sha256": "2e323bcf4869ffae30919bd580a25b4c6dcba8661806f2dcd2b34316a297a9d5",
+      "unchanged": true
+    },
+    {
+      "file": "bridge/src/server.mjs",
+      "sha256": "12064da71876a2af78a1316bf7fe3b97b287075072e05e55cf7ede12e7cca540",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/components/NetworkPredictionChart.vue",
+      "sha256": "4c8caf723d0f87649ed1ad668963cb3e478ad745a8ede7fe029a3ab7aed72fa5",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/components/PanelTitle.vue",
+      "sha256": "e092f693621cb9d394cab63830e77d37d90b002535eddc41665a3ee1d489c040",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/components/LineChart.vue",
+      "sha256": "0da3cc619b9d41f1fce6cf2cf80f07d54b7bb448302d730f65a47e4b9df22a9d",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/components/DonutChart.vue",
+      "sha256": "dad68fe7c4a76e5aafb935eef22ab9e27473f8bcd643aa35763f8ef94b984b46",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/api/dashboard.ts",
+      "sha256": "ecfc9208da292a546e1f35a79d19ec056d374fb8a03e1330f5a13d4739e98178",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/types/dashboard.ts",
+      "sha256": "3e8cf7481aaaf18db45e0660e15cc3159a8f15913270e24fd4f48320faa3bad1",
+      "unchanged": true
+    },
+    {
+      "file": "backend/pom.xml",
+      "sha256": "321572df5386fc6e88e40d8e4e2f0f347174e78d06c1ef339685eaab74c5dae9",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/package.json",
+      "sha256": "b4f9bcf986798b4754202a7dcb9d7d6b43642b899f897a76f297b41b0d083147",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/package-lock.json",
+      "sha256": "7042d2f8b9104a1df7add81dc50f93c070ff5783ac5abe7aaf6934c88d622b57",
+      "unchanged": true
+    },
+    {
+      "file": "bridge/package.json",
+      "sha256": "c857418976306d4c1352bde3f01f2c29d6c695e9481fc48e38676d9ecc85ba1d",
+      "unchanged": true
+    },
+    {
+      "file": "bridge/package-lock.json",
+      "sha256": "ea2e4e00f33109993f0f979886cddb85829d90179d54f9989f097bdd4c723566",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/style.css",
+      "sha256": "5f55885601f24ba8167cc06cbc971a40b4e3c5c0c9155d0678f675a2b877e6a6",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/sender-font-size.css",
+      "sha256": "346a2bc5908542128f07f8dfa3a1328923bf4e18be75d5acb37e84535cf91768",
+      "unchanged": true
+    },
+    {
+      "file": "bridge/test/server.test.mjs",
+      "sha256": "12be44cc69ec1015b64a9f92d1a0154be7c0d50379f923e600bbdb654007cbcb",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/views/EffectDisplayView.vue",
+      "sha256": "8be8759285d5ff57a309c5c297ee40f52ff66ba2d9b18e4745d35f280fabf417",
+      "unchanged": true
+    },
+    {
+      "file": "frontend/src/views/ReceiverDisplayView.vue",
+      "sha256": "d75ac45bb12936edf09770bf4ac008256c596a499408fa0e9c5b6669eccc93f2",
+      "unchanged": true
+    }
+  ],
+  "senderReceiverScriptUnchangedExceptDisplayProp": true
+}

@@ -1,0 +1,7 @@
+frontend/node_modules/
+bridge/node_modules/
+backend/target/
+backend/data/
+runtime/
+.cache/
+*.tsbuildinfo

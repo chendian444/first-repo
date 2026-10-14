@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>多模态监测数据动态压缩控制系统</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">DC</div>
+      <div><strong>数据压缩控制</strong><span>TRANSMISSION V5</span></div>
+    </div>
+    <nav>
+      <button class="nav active" data-view="monitor">传输监控</button>
+      <button class="nav" data-view="strategy">策略分析</button>
+      <button class="nav" data-view="effect">效果展示</button>
+      <button class="nav" data-view="sources">数据源管理</button>
+      <button class="nav" data-view="alarms">告警中心 <b id="alarmBadge">0</b></button>
+    </nav>
+    <div class="sidebar-note">
+      <span>预测模型</span>
+      <strong>Compact LSTM</strong>
+      <small>模型离线训练，运行时只做推理</small>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar">
+      <div>
+        <h1 id="pageTitle">传输监控</h1>
+        <p id="pageSubtitle">查看发送端、链路、接收端和任务全过程</p>
+      </div>
+      <div class="top-status">
+        <span class="status-dot" id="connectionDot"></span>
+        <strong id="connectionText">连接中</strong>
+        <span id="clock"></span>
+      </div>
+    </header>
+
+    <main>
+      <section class="view active" id="view-monitor">
+        <div class="summary-grid" id="dashboardCards"></div>
+
+        <div class="monitor-layout">
+          <section class="card sender-card">
+            <div class="card-title"><span>发送端配置</span><small>统一接入与自动识别</small></div>
+            <form id="taskForm">
+              <label>数据源<select id="sourceSelect" required></select></label>
+              <label>业务场景<input id="sceneInput" value="设备运行监测"></label>
+              <label>发送数据包</label>
+              <div class="package-upload-row">
+                <label>选择文件<input id="fileInput" type="file"></label>
+                <label>选择文件夹<input id="folderInput" type="file" webkitdirectory multiple></label>
+              </div>
+              <div class="two-col">
+                <label>调度优先级
+                  <select id="priorityInput">
+                    <option value="AUTO">自动分级</option>
+                    <option value="CRITICAL">关键数据</option>
+                    <option value="IMPORTANT">重要数据</option>
+                    <option value="NORMAL">普通数据</option>
+                  </select>
+                </label>
+                <label>控制模式
+                  <select id="modeInput">
+                    <option value="AUTO">自动动态控制</option>
+                    <option value="MANUAL">手动压缩</option>
+                  </select>
+                </label>
+              </div>
+              <div class="two-col">
+                <label>压缩算法<select id="algorithmInput"></select></label>
+                <label>压缩级别<input id="levelInput" type="number" value="3" min="0" max="22"></label>
+              </div>
+              <button class="primary" type="submit" id="startButton">开始压缩传输</button>
+            </form>
+            <div id="recognitionBox" class="recognition empty">选择文件或文件夹后显示数据包识别结果</div>
+          </section>
+
+          <section class="card link-card">
+            <div class="card-title"><span>传输主链路</span><small id="activeTaskName">暂无活动任务</small></div>
+            <div class="flow">
+              <div class="node"><i>01</i><strong>数据接入</strong><span id="flowAccess">等待</span></div>
+              <div class="flow-line"></div>
+              <div class="node"><i>02</i><strong>动态压缩</strong><span id="flowCompress">等待</span></div>
+              <div class="flow-line"></div>
+              <div class="node"><i>03</i><strong>链路发送</strong><span id="flowTransfer">等待</span></div>
+              <div class="flow-line"></div>
+              <div class="node"><i>04</i><strong>接收恢复</strong><span id="flowRestore">等待</span></div>
+            </div>
+            <div class="progress-block">
+              <div class="progress-label"><span id="taskState">等待任务</span><b id="taskProgressText">0%</b></div>
+              <div class="progress-track"><div id="taskProgress"></div></div>
+              <p id="taskMessage">完成参数配置后发起任务。</p>
+            </div>
+            <div class="mini-metrics" id="taskMetrics"></div>
+          </section>
+
+          <section class="card receiver-card">
+            <div class="card-title"><span>接收端状态</span><small>恢复与完整性校验</small></div>
+            <div class="status-list">
+              <div><span>接收状态</span><strong id="receiverState">空闲</strong></div>
+              <div><span>当前策略</span><strong id="receiverStrategy">-</strong></div>
+              <div><span>已接收分块</span><strong id="receiverChunks">0 / 0</strong></div>
+              <div><span>重传次数</span><strong id="receiverRetries">0</strong></div>
+              <div><span>完整性校验</span><strong id="receiverIntegrity">-</strong></div>
+              <div><span>任务队列</span><strong id="receiverQueue">0</strong></div>
+            </div>
+          </section>
+        </div>
+
+        <section class="card">
+          <div class="card-title"><span>网络状态快照</span><small>仅在包压缩任务完成后生成静态图表</small></div>
+          <canvas id="liveNetworkChart" height="260"></canvas>
+          <div class="network-stats" id="networkStats"></div>
+        </section>
+
+        <section class="card">
+          <div class="card-title"><span>传输任务队列</span><small>关键数据优先，断连任务缓存并保留断点</small></div>
+          <div class="table-wrap">
+            <table><thead><tr>
+              <th>任务</th><th>调度优先级</th><th>状态</th><th>策略</th>
+              <th>进度</th><th>压缩文件</th><th>解压文件</th>
+            </tr></thead><tbody id="taskTable"></tbody></table>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="view-strategy">
+        <div class="strategy-grid">
+          <section class="card wide">
+            <div class="card-title">
+              <span>长短期记忆网络速率预测对比</span>
+              <small>仅在数据包任务完成后生成实际速率与预测速率静态曲线</small>
+            </div>
+            <canvas id="predictionChart" height="330"></canvas>
+            <div class="chart-legend">
+              <span><i class="actual"></i>实际速率</span>
+              <span><i class="predicted"></i>预测速率</span>
+            </div>
+          </section>
+
+          <section class="card">
+            <div class="card-title"><span>当前推荐策略</span><small>端到端耗时最小</small></div>
+            <div id="recommendation" class="recommendation empty">选择一条传输任务查看策略</div>
+          </section>
+
+          <section class="card">
+            <div class="card-title"><span>预测反馈</span><small>展示预测准确性与误差</small></div>
+            <div id="feedbackMetrics" class="status-list"></div>
+          </section>
+
+          <section class="card wide">
+            <div class="card-title"><span>传输任务队列</span><small>点击任务名切换到该任务进程</small></div>
+            <div class="table-wrap">
+              <table><thead><tr>
+                <th>任务</th><th>调度优先级</th><th>策略</th><th>进度</th><th>压缩文件</th><th>解压文件</th>
+              </tr></thead><tbody id="strategyTaskTable"></tbody></table>
+            </div>
+          </section>
+
+          <section class="card wide">
+            <div class="card-title"><span>分块执行明细</span><small>算法、级别、分块、预测与实际速率</small></div>
+            <div class="table-wrap">
+              <table><thead><tr>
+                <th>块</th><th>时间点</th><th>实际速率</th><th>预测速率</th>
+                <th>算法/级别</th><th>原始</th><th>压缩后</th><th>压缩 ms</th>
+                <th>传输 ms</th><th>解压 ms</th><th>校验</th>
+              </tr></thead><tbody id="chunkTable"></tbody></table>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-effect">
+        <div class="effect-grid">
+          <section class="card wide">
+            <div class="card-title"><span>压缩前后耗时对比</span><small>仅在包压缩任务完成后生成静态对比结果</small></div>
+            <canvas id="effectChart" height="300"></canvas>
+          </section>
+          <section class="card">
+            <div class="card-title"><span>网络总体状态</span><small>任务期间链路评价</small></div>
+            <div id="networkConclusion" class="conclusion empty">暂无已完成任务</div>
+          </section>
+          <section class="card">
+            <div class="card-title"><span>效果结论</span><small>时间节约与效率提升</small></div>
+            <div id="effectConclusion" class="conclusion empty">暂无已完成任务</div>
+          </section>
+          <section class="card wide">
+            <div class="card-title"><span>关键结果指标</span><small>压缩、传输、解压与完整性</small></div>
+            <div class="summary-grid" id="effectMetrics"></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="view" id="view-sources">
+        <section class="card">
+          <div class="card-title"><span>多源数据接入</span><small>传感器、仪表、摄像头、网关、控制系统和日志系统</small></div>
+          <form id="sourceForm" class="source-form">
+            <input id="sourceName" placeholder="数据源名称" required>
+            <select id="sourceType">
+              <option>SENSOR</option><option>INSTRUMENT</option><option>CAMERA</option>
+              <option>EDGE_GATEWAY</option><option>CONTROL_SYSTEM</option>
+              <option>LOG_SYSTEM</option><option>THIRD_PARTY</option>
+            </select>
+            <input id="sourceEndpoint" placeholder="接口地址">
+            <input id="sourceDevice" placeholder="设备编号">
+            <input id="sourceScene" placeholder="业务场景">
+            <button class="primary">添加数据源</button>
+          </form>
+          <div class="table-wrap">
+            <table><thead><tr>
+              <th>名称</th><th>类型</th><th>设备</th><th>业务场景</th>
+              <th>接口</th><th>在线</th><th>累计数据量</th><th>最近上报</th>
+            </tr></thead><tbody id="sourceTable"></tbody></table>
+          </div>
+        </section>
+      </section>
+
+      <section class="view" id="view-alarms">
+        <section class="card">
+          <div class="card-title"><span>告警与异常处理</span><small>网络、积压、传输、恢复、完整性和资源告警</small></div>
+          <div class="filter-row">
+            <select id="alarmLevelFilter"><option value="">全部等级</option>
+              <option>INFO</option><option>WARNING</option><option>MAJOR</option><option>CRITICAL</option></select>
+            <select id="alarmStatusFilter"><option value="">全部状态</option>
+              <option>OPEN</option><option>RESOLVED</option></select>
+            <button class="secondary" id="refreshAlarms">刷新</button>
+          </div>
+          <div id="alarmList" class="alarm-list"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

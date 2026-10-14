@@ -1,0 +1,11 @@
+{
+  "archiveExtracted": true,
+  "independentDirectory": true,
+  "appsStarted": [
+    "adaptive",
+    "prediction"
+  ],
+  "npmInstallRequired": false,
+  "mavenRequired": false,
+  "dashboardChecksPassed": true
+}
