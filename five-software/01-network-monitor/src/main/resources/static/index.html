@@ -1,8 +1,0 @@
-<!doctype html>
-<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>多源网络传输状态实时监测软件</title><link rel="stylesheet" href="app.css"></head>
-<body><header><div class="brand">DC <span>MONITOR / 多源遥测</span></div><span class="badge">独立应用 · v1.0</span></header><main><div class="heading"><p class="eyebrow">DATA COMPRESS / MONITOR</p><h1>多源网络传输状态实时监测软件</h1><p class="muted">功能独立 · 本地运行 · 无跨项目启动依赖</p></div><div id="notice" role="status" aria-live="polite"></div><section class="stats" id="stats"></section>
-<section class="grid"><article><h2>数据源与链路状态</h2><p class="muted">每秒刷新；没有上报时显示未接入。演示模式单独标识。</p><div id="sources" class="cards"></div>
-<h3>注册数据源</h3><form id="sourceForm"><input id="sourceId" placeholder="源标识，例如 edge-01" required><input id="sourceName" placeholder="源名称" required><input id="endpoint" placeholder="来源地址（仅记录）"><button>注册</button></form></article>
-<article><h2>速率历史 <span id="chartLabel"></span></h2><canvas id="history" width="800" height="300"></canvas><p class="muted">单位 KiB/s。灰色未接入状态不能代表真实测量。</p>
-<h3>遥测上报 / 接入测试</h3><form id="telemetryForm"><label>数据源<input id="reportId" value="primary" required></label><label>速率 KiB/s<input id="rate" type="number" min="0" value="1200" step="any" required></label><label>RTT ms<input id="rtt" type="number" min="0" value="30" step="any"></label><label>抖动 ms<input id="jitter" type="number" min="0" value="5" step="any"></label><label>丢包 %<input id="loss" type="number" min="0" max="100" value="0" step="any"></label><button>上报此样本</button></form></article></section>
-<article><h2>告警记录</h2><div id="alarms"></div></article></main><footer>多源网络传输状态实时监测软件 · 数据保留策略与接口详见项目 README</footer><script src="app.js"></script></body></html>
