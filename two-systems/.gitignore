@@ -5,3 +5,6 @@ backend/data/
 runtime/
 .cache/
 *.tsbuildinfo
+
+__pycache__/
+*.pyc
