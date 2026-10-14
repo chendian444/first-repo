@@ -1,0 +1,1 @@
+import{d as e,o,c as t,_ as r}from"./index-DgsEvIiB.js";const s=e({__name:"NetworkMonitorSoftwareView",setup(a){return(c,n)=>(o(),t(r,{"monitor-layout":"","receiver-compact":""}))}});export{s as default};

@@ -1,0 +1,29 @@
+[
+  {
+    "software": "monitor",
+    "taskId": "35495a41-09ff-44aa-851b-14f75425bebe",
+    "remoteConnected": false,
+    "mode": "AUTO",
+    "algorithm": "ZSTD",
+    "integrityPassed": true,
+    "hasEvaluation": true
+  },
+  {
+    "software": "adaptive",
+    "taskId": "a37db43d-8518-4060-9d32-f6531e2483e7",
+    "remoteConnected": false,
+    "mode": "AUTO",
+    "algorithm": "ZSTD",
+    "integrityPassed": true,
+    "hasEvaluation": true
+  },
+  {
+    "software": "prediction",
+    "taskId": "a628551a-9736-4be6-8ac0-45bc07c7dc68",
+    "remoteConnected": false,
+    "mode": "AUTO",
+    "algorithm": "ZSTD",
+    "integrityPassed": true,
+    "hasEvaluation": true
+  }
+]

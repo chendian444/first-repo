@@ -1,0 +1,932 @@
+[
+  {
+    "software": "monitor",
+    "task": {
+      "id": "f580660d-a44c-4aa9-abb9-33148caaac2b",
+      "fileName": "monitor-sensors.csv",
+      "packageKind": "FILE",
+      "itemCount": 1,
+      "sourceId": "sensor-line-01",
+      "businessScene": "设备监测",
+      "originalBytes": 1855776,
+      "compressedBytes": 203479,
+      "progressPercent": 100,
+      "state": "COMPLETED",
+      "recognition": {
+        "modality": "PACKAGE_DATA",
+        "format": "DCCPKG",
+        "mimeType": "application/vnd.dccs.package",
+        "alreadyCompressed": false,
+        "compressibilityScore": 0.72,
+        "suggestedPreprocess": "包清单整理 + 分块压缩",
+        "candidateAlgorithms": [
+          "LZ4",
+          "ZSTD",
+          "GZIP",
+          "BZIP2"
+        ],
+        "recommendedLevelRange": "1-6",
+        "confidence": 0.94,
+        "strategyTag": "适合快速压缩",
+        "reason": "综合文件扩展名、MIME、文件头、数据源、业务场景和样本内容识别"
+      },
+      "priority": {
+        "priority": "IMPORTANT",
+        "priorityValue": 60,
+        "deadlineEpochMs": 1791976518602,
+        "maxWaitMillis": 10000,
+        "cacheAllowed": true,
+        "batchAllowed": false,
+        "recommendedCompressionPolicy": "LZ4/ZSTD/GZIP 平衡策略",
+        "failurePolicy": "优先补传，超过截止时间告警",
+        "reason": "依据数据模态、业务场景和管理员覆盖规则分级"
+      },
+      "currentDecision": {
+        "preprocess": "包清单整理 + 分块压缩",
+        "algorithm": "ZSTD",
+        "level": 3,
+        "chunkSizeBytes": 524288,
+        "cache": false,
+        "batch": false,
+        "sendOrder": 2,
+        "estimatedCompressionMillis": 0.07734159619140625,
+        "estimatedTransferMillis": 2.751494705028568,
+        "estimatedDecompressionMillis": 0.02838836279296875,
+        "estimatedTotalMillis": 6.857224664012943,
+        "estimatedCompressedRatio": 0.1668548583984375,
+        "reason": "尚未达到最小策略保持时间，避免频繁切换"
+      },
+      "totalChunks": 7,
+      "completedChunks": 7,
+      "retryCount": 0,
+      "queuedAtMillis": 1791976508602,
+      "startedAtMillis": 1791976508602,
+      "completedAtMillis": 1791976508698,
+      "totalCompressionMillis": 10.878952,
+      "totalTransferMillis": 6.410325173505438,
+      "totalDecompressionMillis": 6.224152999999999,
+      "integrityPassed": true,
+      "checksum": "40640fad6ea55cf405015bc7748c567eb997b216aa75d956ad8033cdef6d8e7f",
+      "message": "包压缩、接收恢复和完整性校验完成，已生成可打开的 compressed.zip 压缩包",
+      "networkCurve": [
+        {
+          "elapsedMillis": 16,
+          "actualRateKbps": 286331.1530666667,
+          "predictedRateKbps": 2272.157134207591,
+          "safeRateKbps": 1334.1699642537212,
+          "predictionErrorPercent": 99.20645828793957,
+          "strategy": "ZSTD-3"
+        },
+        {
+          "elapsedMillis": 34,
+          "actualRateKbps": 225616,
+          "predictedRateKbps": 2272.8926857550555,
+          "safeRateKbps": 1377.1178198468847,
+          "predictionErrorPercent": 98.99258355535288,
+          "strategy": "ZSTD-3"
+        },
+        {
+          "elapsedMillis": 44,
+          "actualRateKbps": 229024,
+          "predictedRateKbps": 2282.2523469338976,
+          "safeRateKbps": 1389.0616058065195,
+          "predictionErrorPercent": 99.0034876925851,
+          "strategy": "ZSTD-3"
+        },
+        {
+          "elapsedMillis": 55,
+          "actualRateKbps": 225944,
+          "predictedRateKbps": 2282.748760417809,
+          "safeRateKbps": 1392.7002196564883,
+          "predictionErrorPercent": 98.98968383297728,
+          "strategy": "ZSTD-3"
+        },
+        {
+          "elapsedMillis": 65,
+          "actualRateKbps": 231366.65600000002,
+          "predictedRateKbps": 2291.161607529443,
+          "safeRateKbps": 1404.2119253179656,
+          "predictionErrorPercent": 99.00972696448989,
+          "strategy": "ZSTD-3"
+        },
+        {
+          "elapsedMillis": 81,
+          "actualRateKbps": 217896,
+          "predictedRateKbps": 2292.304975091714,
+          "safeRateKbps": 1414.2703653993028,
+          "predictionErrorPercent": 98.94798207626955,
+          "strategy": "ZSTD-3"
+        },
+        {
+          "elapsedMillis": 90,
+          "actualRateKbps": 26328,
+          "predictedRateKbps": 2308.0856406169505,
+          "safeRateKbps": 1414.2703653993028,
+          "predictionErrorPercent": 91.23334229483079,
+          "strategy": "ZSTD-3"
+        }
+      ],
+      "adjustments": [
+        {
+          "elapsedMillis": 18,
+          "fromStrategy": "ZSTD-3",
+          "toStrategy": "ZSTD-3",
+          "actualRateKbps": 286331.1530666667,
+          "predictedRateKbps": 2272.8926857550555,
+          "predictionErrorPercent": 99.20620139952922,
+          "estimatedGainPercent": 2.859681116953405,
+          "reason": "尚未达到最小策略保持时间，避免频繁切换"
+        },
+        {
+          "elapsedMillis": 81,
+          "fromStrategy": "ZSTD-3",
+          "toStrategy": "ZSTD-3",
+          "actualRateKbps": 217896,
+          "predictedRateKbps": 2308.0856406169505,
+          "predictionErrorPercent": 98.94073978383405,
+          "estimatedGainPercent": 84.02508580972797,
+          "reason": "尚未达到最小策略保持时间，避免频繁切换"
+        }
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "offsetBytes": 0,
+          "originalBytes": 524288,
+          "compressedBytes": 58784,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 524288,
+          "compressionMillis": 2.143392,
+          "modeledTransferMillis": 1.6424059867858887,
+          "decompressionMillis": 1.817661,
+          "actualRateKbps": 286331.1530666667,
+          "predictedRateKbps": 2272.157134207591,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 16
+        },
+        {
+          "chunkIndex": 1,
+          "offsetBytes": 524288,
+          "originalBytes": 262144,
+          "compressedBytes": 28202,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 6.023736,
+          "modeledTransferMillis": 0.7694870873820037,
+          "decompressionMillis": 1.257922,
+          "actualRateKbps": 225616,
+          "predictedRateKbps": 2272.8926857550555,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 34
+        },
+        {
+          "chunkIndex": 2,
+          "offsetBytes": 786432,
+          "originalBytes": 262144,
+          "compressedBytes": 28628,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.681348,
+          "modeledTransferMillis": 0.9913137809375221,
+          "decompressionMillis": 0.801526,
+          "actualRateKbps": 229024,
+          "predictedRateKbps": 2282.2523469338976,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 44
+        },
+        {
+          "chunkIndex": 3,
+          "offsetBytes": 1048576,
+          "originalBytes": 262144,
+          "compressedBytes": 28243,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.704743,
+          "modeledTransferMillis": 0.9634293240009781,
+          "decompressionMillis": 0.730862,
+          "actualRateKbps": 225944,
+          "predictedRateKbps": 2282.748760417809,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 55
+        },
+        {
+          "chunkIndex": 4,
+          "offsetBytes": 1310720,
+          "originalBytes": 262144,
+          "compressedBytes": 29094,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.613108,
+          "modeledTransferMillis": 1.005987656233403,
+          "decompressionMillis": 0.706055,
+          "actualRateKbps": 231366.65600000002,
+          "predictedRateKbps": 2291.161607529443,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 65
+        },
+        {
+          "chunkIndex": 5,
+          "offsetBytes": 1572864,
+          "originalBytes": 262144,
+          "compressedBytes": 27237,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.606568,
+          "modeledTransferMillis": 0.9197049660431622,
+          "decompressionMillis": 0.71639,
+          "actualRateKbps": 217896,
+          "predictedRateKbps": 2292.304975091714,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 81
+        },
+        {
+          "chunkIndex": 6,
+          "offsetBytes": 1835008,
+          "originalBytes": 20768,
+          "compressedBytes": 3291,
+          "algorithm": "ZSTD",
+          "level": 3,
+          "chunkSizeBytes": 524288,
+          "compressionMillis": 0.106057,
+          "modeledTransferMillis": 0.11799637212248046,
+          "decompressionMillis": 0.193737,
+          "actualRateKbps": 26328,
+          "predictedRateKbps": 2308.0856406169505,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 90
+        }
+      ]
+    },
+    "bytes": 1855730,
+    "sha256": "a554cbc20bd26e91312953ef4cdb94b5a57359efcf0aa0415a0594283d757aa7",
+    "restoredMatches": true,
+    "remoteReceivedMatches": true,
+    "forecastPointCount": 7,
+    "forecastMetrics": [
+      {
+        "label": "预测模型",
+        "value": "长短期记忆网络预测器"
+      },
+      {
+        "label": "预测健康",
+        "value": "正常"
+      },
+      {
+        "label": "速率贴合度",
+        "value": "2.09%"
+      },
+      {
+        "label": "趋势一致率",
+        "value": "33.33%"
+      }
+    ],
+    "networkMetrics": [
+      {
+        "label": "平均分片时延",
+        "value": "0.92 ms"
+      },
+      {
+        "label": "平均传输速率",
+        "value": "206.07 Mbps"
+      },
+      {
+        "label": "分片抖动",
+        "value": "0.27 ms"
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "software": "adaptive",
+    "task": {
+      "id": "04268145-b265-458f-a31c-61681b211da6",
+      "fileName": "strategy-sensors.csv",
+      "packageKind": "FILE",
+      "itemCount": 1,
+      "sourceId": "sensor-line-01",
+      "businessScene": "设备监测",
+      "originalBytes": 1855777,
+      "compressedBytes": 425708,
+      "progressPercent": 100,
+      "state": "COMPLETED",
+      "recognition": {
+        "modality": "PACKAGE_DATA",
+        "format": "DCCPKG",
+        "mimeType": "application/vnd.dccs.package",
+        "alreadyCompressed": false,
+        "compressibilityScore": 0.72,
+        "suggestedPreprocess": "包清单整理 + 分块压缩",
+        "candidateAlgorithms": [
+          "LZ4",
+          "ZSTD",
+          "GZIP",
+          "BZIP2"
+        ],
+        "recommendedLevelRange": "1-6",
+        "confidence": 0.94,
+        "strategyTag": "适合快速压缩",
+        "reason": "综合文件扩展名、MIME、文件头、数据源、业务场景和样本内容识别"
+      },
+      "priority": {
+        "priority": "IMPORTANT",
+        "priorityValue": 60,
+        "deadlineEpochMs": 1791976529098,
+        "maxWaitMillis": 10000,
+        "cacheAllowed": true,
+        "batchAllowed": false,
+        "recommendedCompressionPolicy": "LZ4/ZSTD/GZIP 平衡策略",
+        "failurePolicy": "优先补传，超过截止时间告警",
+        "reason": "依据数据模态、业务场景和管理员覆盖规则分级"
+      },
+      "currentDecision": {
+        "preprocess": "包清单整理 + 分块压缩",
+        "algorithm": "GZIP",
+        "level": 3,
+        "chunkSizeBytes": 524288,
+        "cache": false,
+        "batch": false,
+        "sendOrder": 2,
+        "estimatedCompressionMillis": 0.4672844361419678,
+        "estimatedTransferMillis": 4.1093752088089,
+        "estimatedDecompressionMillis": 0.39382981736755374,
+        "estimatedTotalMillis": 8.970489462318422,
+        "estimatedCompressedRatio": 0.2491455078125,
+        "reason": "尚未达到最小策略保持时间，避免频繁切换"
+      },
+      "totalChunks": 7,
+      "completedChunks": 7,
+      "retryCount": 0,
+      "queuedAtMillis": 1791976519098,
+      "startedAtMillis": 1791976519099,
+      "completedAtMillis": 1791976519223,
+      "totalCompressionMillis": 23.344122999999996,
+      "totalTransferMillis": 6.653603217289991,
+      "totalDecompressionMillis": 10.199418000000001,
+      "integrityPassed": true,
+      "checksum": "df2fc61b70f2322df19402cd6d3d94fd21df7a1b857584195a3ec3308685a02b",
+      "message": "包压缩、接收恢复和完整性校验完成，已生成可打开的 compressed.zip 压缩包",
+      "networkCurve": [
+        {
+          "elapsedMillis": 26,
+          "actualRateKbps": 536870.912,
+          "predictedRateKbps": 2272.157134207591,
+          "safeRateKbps": 1006.3069412428999,
+          "predictionErrorPercent": 99.57677775356778,
+          "strategy": "GZIP-3"
+        },
+        {
+          "elapsedMillis": 42,
+          "actualRateKbps": 478368,
+          "predictedRateKbps": 2272.8926857550555,
+          "safeRateKbps": 1330.840929793735,
+          "predictionErrorPercent": 99.52486523225737,
+          "strategy": "GZIP-3"
+        },
+        {
+          "elapsedMillis": 55,
+          "actualRateKbps": 480792,
+          "predictedRateKbps": 2282.2523469338976,
+          "safeRateKbps": 1389.0616058065195,
+          "predictionErrorPercent": 99.52531399296704,
+          "strategy": "GZIP-3"
+        },
+        {
+          "elapsedMillis": 68,
+          "actualRateKbps": 480024,
+          "predictedRateKbps": 2282.748760417809,
+          "safeRateKbps": 1392.7002196564883,
+          "predictionErrorPercent": 99.52445111902367,
+          "strategy": "GZIP-3"
+        },
+        {
+          "elapsedMillis": 82,
+          "actualRateKbps": 484336,
+          "predictedRateKbps": 2291.161607529443,
+          "safeRateKbps": 1404.2119253179656,
+          "predictionErrorPercent": 99.52694790237987,
+          "strategy": "GZIP-3"
+        },
+        {
+          "elapsedMillis": 95,
+          "actualRateKbps": 481528,
+          "predictedRateKbps": 2292.304975091714,
+          "safeRateKbps": 1414.2703653993028,
+          "predictionErrorPercent": 99.52395188336052,
+          "strategy": "GZIP-3"
+        },
+        {
+          "elapsedMillis": 105,
+          "actualRateKbps": 41808,
+          "predictedRateKbps": 2308.0856406169505,
+          "safeRateKbps": 1414.2703653993028,
+          "predictionErrorPercent": 94.47932060702031,
+          "strategy": "GZIP-3"
+        }
+      ],
+      "adjustments": [
+        {
+          "elapsedMillis": 29,
+          "fromStrategy": "GZIP-3",
+          "toStrategy": "GZIP-3",
+          "actualRateKbps": 536870.912,
+          "predictedRateKbps": 2272.8926857550555,
+          "predictionErrorPercent": 99.57664074641559,
+          "estimatedGainPercent": 20.72629685957681,
+          "reason": "尚未达到最小策略保持时间，避免频繁切换"
+        },
+        {
+          "elapsedMillis": 96,
+          "fromStrategy": "GZIP-3",
+          "toStrategy": "GZIP-3",
+          "actualRateKbps": 481528,
+          "predictedRateKbps": 2308.0856406169505,
+          "predictionErrorPercent": 99.52067467714922,
+          "estimatedGainPercent": 87.48928840738253,
+          "reason": "尚未达到最小策略保持时间，避免频繁切换"
+        }
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "offsetBytes": 0,
+          "originalBytes": 524288,
+          "compressedBytes": 119851,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 524288,
+          "compressionMillis": 7.442116,
+          "modeledTransferMillis": 1.7859190702438354,
+          "decompressionMillis": 2.654439,
+          "actualRateKbps": 536870.912,
+          "predictedRateKbps": 2272.157134207591,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 26
+        },
+        {
+          "chunkIndex": 1,
+          "offsetBytes": 524288,
+          "originalBytes": 262144,
+          "compressedBytes": 59796,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 3.30397,
+          "modeledTransferMillis": 0.8701463229954243,
+          "decompressionMillis": 1.396738,
+          "actualRateKbps": 478368,
+          "predictedRateKbps": 2272.8926857550555,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 42
+        },
+        {
+          "chunkIndex": 2,
+          "offsetBytes": 786432,
+          "originalBytes": 262144,
+          "compressedBytes": 60099,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 3.118175,
+          "modeledTransferMillis": 0.981510965407385,
+          "decompressionMillis": 1.359993,
+          "actualRateKbps": 480792,
+          "predictedRateKbps": 2282.2523469338976,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 55
+        },
+        {
+          "chunkIndex": 3,
+          "offsetBytes": 1048576,
+          "originalBytes": 262144,
+          "compressedBytes": 60003,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 2.994172,
+          "modeledTransferMillis": 0.9750025738781012,
+          "decompressionMillis": 1.49936,
+          "actualRateKbps": 480024,
+          "predictedRateKbps": 2282.748760417809,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 68
+        },
+        {
+          "chunkIndex": 4,
+          "offsetBytes": 1310720,
+          "originalBytes": 262144,
+          "compressedBytes": 60542,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 3.064566,
+          "modeledTransferMillis": 0.9853348478409414,
+          "decompressionMillis": 1.562212,
+          "actualRateKbps": 484336,
+          "predictedRateKbps": 2291.161607529443,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 82
+        },
+        {
+          "chunkIndex": 5,
+          "offsetBytes": 1572864,
+          "originalBytes": 262144,
+          "compressedBytes": 60191,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 3.165726,
+          "modeledTransferMillis": 0.970900753815533,
+          "decompressionMillis": 1.36443,
+          "actualRateKbps": 481528,
+          "predictedRateKbps": 2292.304975091714,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 95
+        },
+        {
+          "chunkIndex": 6,
+          "offsetBytes": 1835008,
+          "originalBytes": 20769,
+          "compressedBytes": 5226,
+          "algorithm": "GZIP",
+          "level": 3,
+          "chunkSizeBytes": 524288,
+          "compressionMillis": 0.255398,
+          "modeledTransferMillis": 0.08478868310877041,
+          "decompressionMillis": 0.362246,
+          "actualRateKbps": 41808,
+          "predictedRateKbps": 2308.0856406169505,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 105
+        }
+      ]
+    },
+    "bytes": 1855730,
+    "sha256": "a554cbc20bd26e91312953ef4cdb94b5a57359efcf0aa0415a0594283d757aa7",
+    "restoredMatches": true,
+    "remoteReceivedMatches": true,
+    "forecastPointCount": 7,
+    "forecastMetrics": [
+      {
+        "label": "预测模型",
+        "value": "长短期记忆网络预测器"
+      },
+      {
+        "label": "预测健康",
+        "value": "正常"
+      },
+      {
+        "label": "速率贴合度",
+        "value": "1.19%"
+      },
+      {
+        "label": "趋势一致率",
+        "value": "33.33%"
+      }
+    ],
+    "networkMetrics": [
+      {
+        "label": "平均分片时延",
+        "value": "0.95 ms"
+      },
+      {
+        "label": "平均传输速率",
+        "value": "426.25 Mbps"
+      },
+      {
+        "label": "分片抖动",
+        "value": "0.27 ms"
+      }
+    ],
+    "pageErrors": []
+  },
+  {
+    "software": "prediction",
+    "task": {
+      "id": "2b8afdfe-f415-4b44-9da1-361abda555c5",
+      "fileName": "prediction-stream.bin",
+      "packageKind": "FILE",
+      "itemCount": 1,
+      "sourceId": "sensor-line-01",
+      "businessScene": "设备监测",
+      "originalBytes": 2097200,
+      "compressedBytes": 2097200,
+      "progressPercent": 100,
+      "state": "COMPLETED",
+      "recognition": {
+        "modality": "PACKAGE_DATA",
+        "format": "DCCPKG",
+        "mimeType": "application/vnd.dccs.package",
+        "alreadyCompressed": false,
+        "compressibilityScore": 0.72,
+        "suggestedPreprocess": "包清单整理 + 分块压缩",
+        "candidateAlgorithms": [
+          "LZ4",
+          "ZSTD",
+          "GZIP",
+          "BZIP2"
+        ],
+        "recommendedLevelRange": "1-6",
+        "confidence": 0.94,
+        "strategyTag": "适合快速压缩",
+        "reason": "综合文件扩展名、MIME、文件头、数据源、业务场景和样本内容识别"
+      },
+      "priority": {
+        "priority": "IMPORTANT",
+        "priorityValue": 60,
+        "deadlineEpochMs": 1791976537185,
+        "maxWaitMillis": 10000,
+        "cacheAllowed": true,
+        "batchAllowed": false,
+        "recommendedCompressionPolicy": "LZ4/ZSTD/GZIP 平衡策略",
+        "failurePolicy": "优先补传，超过截止时间告警",
+        "reason": "依据数据模态、业务场景和管理员覆盖规则分级"
+      },
+      "currentDecision": {
+        "preprocess": "包清单整理 + 分块压缩",
+        "algorithm": "NONE",
+        "level": 0,
+        "chunkSizeBytes": 524288,
+        "cache": false,
+        "batch": false,
+        "sendOrder": 2,
+        "estimatedCompressionMillis": 0.05224556469726563,
+        "estimatedTransferMillis": 222.28385290053652,
+        "estimatedDecompressionMillis": 0.019591586669921876,
+        "estimatedTotalMillis": 226.3556900519037,
+        "estimatedCompressedRatio": 1,
+        "reason": "尚未达到最小策略保持时间，避免频繁切换"
+      },
+      "totalChunks": 7,
+      "completedChunks": 7,
+      "retryCount": 0,
+      "queuedAtMillis": 1791976527185,
+      "startedAtMillis": 1791976527185,
+      "completedAtMillis": 1791976527327,
+      "totalCompressionMillis": 0.552556,
+      "totalTransferMillis": 51.45241355871638,
+      "totalDecompressionMillis": 5.770853,
+      "integrityPassed": true,
+      "checksum": "c48e2ffb68db059c328f13361bb7155e39a73ce1198ff2d21e57d462e3bd67dc",
+      "message": "包压缩、接收恢复和完整性校验完成，已生成可打开的 compressed.zip 压缩包",
+      "networkCurve": [
+        {
+          "elapsedMillis": 17,
+          "actualRateKbps": 306783.3782857143,
+          "predictedRateKbps": 2272.157134207591,
+          "safeRateKbps": 912.6308292360002,
+          "predictionErrorPercent": 99.2593610687436,
+          "strategy": "NONE-0"
+        },
+        {
+          "elapsedMillis": 28,
+          "actualRateKbps": 314146.17936457146,
+          "predictedRateKbps": 2272.8926857550555,
+          "safeRateKbps": 1206.9542716646101,
+          "predictionErrorPercent": 99.27648565061259,
+          "strategy": "NONE-0"
+        },
+        {
+          "elapsedMillis": 43,
+          "actualRateKbps": 321685.6876693212,
+          "predictedRateKbps": 2282.2523469338976,
+          "safeRateKbps": 1324.6751952862576,
+          "predictionErrorPercent": 99.29053345100017,
+          "strategy": "NONE-0"
+        },
+        {
+          "elapsedMillis": 54,
+          "actualRateKbps": 329406.1441733849,
+          "predictedRateKbps": 2282.748760417809,
+          "safeRateKbps": 1324.6751952862576,
+          "predictionErrorPercent": 99.3070108737206,
+          "strategy": "NONE-0"
+        },
+        {
+          "elapsedMillis": 63,
+          "actualRateKbps": 337311.89163354615,
+          "predictedRateKbps": 2291.161607529443,
+          "safeRateKbps": 1324.6751952862576,
+          "predictionErrorPercent": 99.32075872082845,
+          "strategy": "NONE-0"
+        },
+        {
+          "elapsedMillis": 73,
+          "actualRateKbps": 345407.3770327512,
+          "predictedRateKbps": 2292.304975091714,
+          "safeRateKbps": 1324.6751952862576,
+          "predictionErrorPercent": 99.33634741829084,
+          "strategy": "NONE-0"
+        },
+        {
+          "elapsedMillis": 83,
+          "actualRateKbps": 353697.1540815372,
+          "predictedRateKbps": 2308.0856406169505,
+          "safeRateKbps": 1324.6751952862576,
+          "predictionErrorPercent": 99.34744014364196,
+          "strategy": "NONE-0"
+        }
+      ],
+      "adjustments": [
+        {
+          "elapsedMillis": 18,
+          "fromStrategy": "NONE-0",
+          "toStrategy": "NONE-0",
+          "actualRateKbps": 306783.3782857143,
+          "predictedRateKbps": 2272.8926857550555,
+          "predictionErrorPercent": 99.25912130622727,
+          "estimatedGainPercent": 24.230013829164303,
+          "reason": "尚未达到最小策略保持时间，避免频繁切换"
+        },
+        {
+          "elapsedMillis": 74,
+          "fromStrategy": "NONE-0",
+          "toStrategy": "NONE-0",
+          "actualRateKbps": 345407.3770327512,
+          "predictedRateKbps": 2308.0856406169505,
+          "predictionErrorPercent": 99.33177870708937,
+          "estimatedGainPercent": 49.545124658591234,
+          "reason": "尚未达到最小策略保持时间，避免频繁切换"
+        }
+      ],
+      "chunks": [
+        {
+          "chunkIndex": 0,
+          "offsetBytes": 0,
+          "originalBytes": 524288,
+          "compressedBytes": 524288,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 524288,
+          "compressionMillis": 0.055552,
+          "modeledTransferMillis": 13.671875,
+          "decompressionMillis": 1.124754,
+          "actualRateKbps": 306783.3782857143,
+          "predictedRateKbps": 2272.157134207591,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 17
+        },
+        {
+          "chunkIndex": 1,
+          "offsetBytes": 524288,
+          "originalBytes": 262144,
+          "compressedBytes": 262144,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.222008,
+          "modeledTransferMillis": 6.675720214843749,
+          "decompressionMillis": 0.614059,
+          "actualRateKbps": 314146.17936457146,
+          "predictedRateKbps": 2272.8926857550555,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 28
+        },
+        {
+          "chunkIndex": 2,
+          "offsetBytes": 786432,
+          "originalBytes": 262144,
+          "compressedBytes": 262144,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.134409,
+          "modeledTransferMillis": 6.519258022308349,
+          "decompressionMillis": 0.638606,
+          "actualRateKbps": 321685.6876693212,
+          "predictedRateKbps": 2282.2523469338976,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 43
+        },
+        {
+          "chunkIndex": 3,
+          "offsetBytes": 1048576,
+          "originalBytes": 262144,
+          "compressedBytes": 262144,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.057385,
+          "modeledTransferMillis": 6.366462912410497,
+          "decompressionMillis": 1.684894,
+          "actualRateKbps": 329406.1441733849,
+          "predictedRateKbps": 2282.748760417809,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 54
+        },
+        {
+          "chunkIndex": 4,
+          "offsetBytes": 1310720,
+          "originalBytes": 262144,
+          "compressedBytes": 262144,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.030775,
+          "modeledTransferMillis": 6.217248937900876,
+          "decompressionMillis": 0.561862,
+          "actualRateKbps": 337311.89163354615,
+          "predictedRateKbps": 2291.161607529443,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 63
+        },
+        {
+          "chunkIndex": 5,
+          "offsetBytes": 1572864,
+          "originalBytes": 262144,
+          "compressedBytes": 262144,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 262144,
+          "compressionMillis": 0.025247,
+          "modeledTransferMillis": 6.071532165918824,
+          "decompressionMillis": 0.593389,
+          "actualRateKbps": 345407.3770327512,
+          "predictedRateKbps": 2292.304975091714,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 73
+        },
+        {
+          "chunkIndex": 6,
+          "offsetBytes": 1835008,
+          "originalBytes": 262192,
+          "compressedBytes": 262192,
+          "algorithm": "NONE",
+          "level": 0,
+          "chunkSizeBytes": 524288,
+          "compressionMillis": 0.02718,
+          "modeledTransferMillis": 5.930316305334078,
+          "decompressionMillis": 0.553289,
+          "actualRateKbps": 353697.1540815372,
+          "predictedRateKbps": 2308.0856406169505,
+          "checksumPassed": true,
+          "retries": 0,
+          "elapsedMillis": 83
+        }
+      ]
+    },
+    "bytes": 2097152,
+    "sha256": "0d52274b79c10bd380ece4b471eb7345bf0b39649c888a47a624a868771e12b7",
+    "restoredMatches": true,
+    "remoteReceivedMatches": true,
+    "forecastPointCount": 7,
+    "forecastMetrics": [
+      {
+        "label": "预测模型",
+        "value": "长短期记忆网络预测器"
+      },
+      {
+        "label": "预测健康",
+        "value": "正常"
+      },
+      {
+        "label": "速率贴合度",
+        "value": "0.69%"
+      },
+      {
+        "label": "趋势一致率",
+        "value": "100.00%"
+      }
+    ],
+    "networkMetrics": [
+      {
+        "label": "平均分片时延",
+        "value": "7.35 ms"
+      },
+      {
+        "label": "平均传输速率",
+        "value": "329.78 Mbps"
+      },
+      {
+        "label": "分片抖动",
+        "value": "1.81 ms"
+      }
+    ],
+    "pageErrors": []
+  }
+]

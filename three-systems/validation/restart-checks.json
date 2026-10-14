@@ -1,0 +1,29 @@
+[
+  {
+    "software": "monitor",
+    "stopStartPassed": true,
+    "taskHistoryRetained": true,
+    "verifiedRecentTaskIds": [
+      "35495a41-09ff-44aa-851b-14f75425bebe",
+      "f580660d-a44c-4aa9-abb9-33148caaac2b"
+    ]
+  },
+  {
+    "software": "adaptive",
+    "stopStartPassed": true,
+    "taskHistoryRetained": true,
+    "verifiedRecentTaskIds": [
+      "04268145-b265-458f-a31c-61681b211da6",
+      "a37db43d-8518-4060-9d32-f6531e2483e7"
+    ]
+  },
+  {
+    "software": "prediction",
+    "stopStartPassed": true,
+    "taskHistoryRetained": true,
+    "verifiedRecentTaskIds": [
+      "2b8afdfe-f415-4b44-9da1-361abda555c5",
+      "a628551a-9736-4be6-8ac0-45bc07c7dc68"
+    ]
+  }
+]

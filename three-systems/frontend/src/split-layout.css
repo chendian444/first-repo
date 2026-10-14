@@ -1,0 +1,40 @@
+/* Arrangement only. Original stylesheets supply every theme color and font. */
+.standalone-shell .content-area { padding: 78px 20px 20px; height: auto; min-height: 100vh; overflow: auto; }
+.standalone-shell .return-home { color: inherit; text-decoration: none; }
+.split-software { display: grid; grid-template-columns: 320px minmax(0, 1fr) 320px; grid-template-rows: minmax(0, 1fr); gap: 18px; align-items: stretch; height: calc(100vh - 98px); min-height: 980px; }
+.split-software > .transmission-page, .split-software .split-controls { display: contents; }
+.split-software .split-controls > .sender-panel { grid-column: 1; grid-row: 1 / -1; width: 100%; }
+.split-software .split-controls > .receiver-panel { grid-column: 3; grid-row: 1 / -1; width: 100%; }
+.split-software .split-controls > .toast-message { grid-column: 1 / -1; }
+.split-software .sender-panel .field-help { white-space: normal !important; overflow-wrap: anywhere; }
+.split-software > .strategy-page { grid-column: 2; grid-row: 1; height: 100%; min-height: 0; }
+.adaptive-software { min-height: 1080px; }
+.adaptive-software .strategy-grid { display: grid; grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(400px, .95fr) minmax(460px, 1.3fr) minmax(188px, .5fr); gap: 16px; }
+.adaptive-software .strategy-grid > .panel { width: 100%; min-height: 0; }
+.adaptive-software .recommendation-table { overflow: auto; }
+.adaptive-software .recommend-row:last-child strong { white-space: normal !important; overflow-wrap: anywhere; padding-top: 8px; padding-bottom: 8px; }
+.prediction-software { grid-template-rows: minmax(520px, 1fr) auto; }
+.prediction-software > .panel, .prediction-software > .empty-panel, .prediction-software > .toast-message { grid-column: 2; }
+.prediction-software .prediction-analysis { min-height: 0; height: 100%; }
+.prediction-software .network-chart-wrap { max-height: none; min-height: 260px; }
+.prediction-software .monitor-metrics-panel { height: auto; min-height: 0; }
+.prediction-software .prediction-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.prediction-software .prediction-kpis .kpi-card { min-height: 100px; padding: 10px 14px; }
+.prediction-software .prediction-kpis strong { overflow-wrap: anywhere; white-space: normal !important; }
+/* Reference sketch: sender / link in the upper row, compact receiver / queue below. */
+.monitor-software { height: auto; min-height: calc(100vh - 98px); grid-template-rows: auto auto; }
+.monitor-software .transmission-layout { height: auto; grid-template-columns: 340px minmax(0, 1fr); grid-template-rows: minmax(840px, 1fr) 250px; grid-template-areas: 'sender route' 'receiver queue'; gap: 16px; }
+.monitor-software .sender-panel { grid-area: sender; }
+.monitor-software .route-panel { grid-area: route; min-width: 0; }
+.monitor-software .receiver-panel { grid-area: receiver; min-height: 0; }
+.monitor-software .task-queue-panel { grid-area: queue; min-height: 0; height: 100%; }
+.monitor-software .receiver-overview { border-bottom: 0; }
+.monitor-software .receiver-status-item { min-width: 0; }
+.monitor-software .receiver-status-item b { white-space: normal !important; overflow-wrap: anywhere; }
+.monitor-software .receiver-panel .panel-title-right { max-width: 145px; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 1500px) {
+  .split-software { grid-template-columns: 290px minmax(0, 1fr) 270px; gap: 14px; }
+  .prediction-software .prediction-kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .split-software { min-height: 1120px; }
+  .monitor-software .transmission-layout { grid-template-columns: 320px minmax(0, 1fr); }
+}
