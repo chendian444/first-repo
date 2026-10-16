@@ -13,3 +13,15 @@
 [使用与构建说明](three-systems/README.md) · [验证报告](three-systems/validation/验证报告.md)
 
 上一个双系统版本可从仓库历史查看，本次请使用三系统交付包。
+
+
+## 动量轮数据压缩传输集成
+
+新增 AT32F403A 单片机压缩、USART3 传输和上位机解压监控工程，与原三个软件目录分别保存。
+
+- [完整源码与说明](reaction-wheel-compression)
+- [完整运行包（约 40 MB）](deliverables/reaction-wheel-compression-integration.zip)
+- [完整压缩传输操作手册](reaction-wheel-compression/完整压缩传输操作手册.md)
+- [验证报告](reaction-wheel-compression/验证报告.md)
+
+软件链路已验证；真实 AT32 板上的 Keil 完整编译、烧录和控制时序验收仍需完成。

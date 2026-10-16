@@ -1,0 +1,10 @@
+{
+  "source": "user-supplied historical gyro CSV, legacy channel layout",
+  "frames": 1000,
+  "rawPayloadBytes": 64000,
+  "compressedPayloadBytes": 14028,
+  "wireBytes": 36028,
+  "payloadSavingPercent": 78.08125,
+  "framedSavingPercent": 58.10697674418604,
+  "note": "Historical CSV has reserved zero channels; not a new 16-channel hardware benchmark."
+}

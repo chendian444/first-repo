@@ -1,0 +1,20 @@
+历史回放完成: 1000 帧; 无效候选=0; 丢弃字节=0; 未完成尾部=0 字节
+串口 /dev/pts/0@230400；原始记录 /tmp/wheel-e2e-3lgh9co_/serial.dcw
+
+采集停止；未传数据可使用 --replay 从原始记录恢复。
+ 
+{
+  "historicalReplayFrames": 1000,
+  "binaryUpload": "PASS",
+  "crcAtomicRejection": "PASS",
+  "httpIdempotency": "PASS",
+  "configurationBounds": "PASS",
+  "serialPTYCapture": "PASS",
+  "deviceConfigConfirmation": "PASS",
+  "rawBytesExact": "PASS",
+  "hostCommands": [
+    "OPEN_TELEMETRY",
+    "TELEMETRY_CONFIG"
+  ],
+  "hardwareTested": false
+}

@@ -1,0 +1,15 @@
+#ifndef __TIMER_H
+#define __TIMER_H
+#include "app.h"
+
+extern u8 TIM_Flag;
+void TIM1_Init(void);
+void TIM8_Init(void);
+void TIM4_Init(void);
+void TIM_20kHz_Init(void);
+void Start_Music(void);
+
+void TIM7_Init(void);
+void TIM2_Init(void);
+
+#endif

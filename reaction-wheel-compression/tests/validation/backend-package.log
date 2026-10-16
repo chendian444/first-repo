@@ -1,0 +1,74 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------< com.datacompress:data-compress-control-system-v5 >----------
+[INFO] Building Data Compress Control System V5 5.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ data-compress-control-system-v5 ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ data-compress-control-system-v5 ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 61 source files with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ data-compress-control-system-v5 ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ data-compress-control-system-v5 ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 4 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ data-compress-control-system-v5 ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.datacompress.control.algorithm.CoreCompressionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.445 s -- in com.datacompress.control.algorithm.CoreCompressionTest
+[INFO] Running com.datacompress.control.service.WheelTelemetryTest
+[INFO] Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.652 s -- in com.datacompress.control.service.WheelTelemetryTest
+[INFO] Running com.datacompress.control.service.PackagePayloadServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.021 s -- in com.datacompress.control.service.PackagePayloadServiceTest
+[INFO] Running com.datacompress.control.DataCompressControlApplicationTests
+07:26:58.141 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.datacompress.control.DataCompressControlApplicationTests]: DataCompressControlApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+07:26:58.268 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.datacompress.control.DataCompressControlApplication for test class com.datacompress.control.DataCompressControlApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.11)
+
+2026-10-16T07:26:59.038Z  INFO 1970 --- [data-compress-control-system-v5] [           main] .d.c.DataCompressControlApplicationTests : Starting DataCompressControlApplicationTests using Java 17.0.16 with PID 1970 (started by agent in /workspace/work/integration/DataCompress_System/backend)
+2026-10-16T07:26:59.050Z  INFO 1970 --- [data-compress-control-system-v5] [           main] .d.c.DataCompressControlApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-10-16T07:27:01.024Z  INFO 1970 --- [data-compress-control-system-v5] [           main] c.d.c.service.CompactLstmRatePredictor   : Loaded compact LSTM model: sequenceLength=24, horizon=12, hiddenSize=8
+2026-10-16T07:27:01.040Z  INFO 1970 --- [data-compress-control-system-v5] [           main] c.d.c.s.SharedCompressionHistoryService  : Loaded 0 shared compression history task(s) from /workspace/work/integration/DataCompress_System/backend/data/history
+2026-10-16T07:27:01.423Z  INFO 1970 --- [data-compress-control-system-v5] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-10-16T07:27:02.415Z  INFO 1970 --- [data-compress-control-system-v5] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-10-16T07:27:02.561Z  INFO 1970 --- [data-compress-control-system-v5] [           main] .d.c.DataCompressControlApplicationTests : Started DataCompressControlApplicationTests in 4.097 seconds (process running for 7.034)
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.275 s -- in com.datacompress.control.DataCompressControlApplicationTests
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ data-compress-control-system-v5 ---
+[INFO] Building jar: /workspace/work/integration/DataCompress_System/backend/target/data-compress-control-system-v5-5.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.11:repackage (repackage) @ data-compress-control-system-v5 ---
+[INFO] Replacing main artifact /workspace/work/integration/DataCompress_System/backend/target/data-compress-control-system-v5-5.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /workspace/work/integration/DataCompress_System/backend/target/data-compress-control-system-v5-5.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  17.539 s
+[INFO] Finished at: 2026-10-16T07:27:04Z
+[INFO] ------------------------------------------------------------------------

@@ -1,0 +1,11 @@
+frontend/node_modules/
+frontend/dist/
+backend/target/
+backend/data/history/
+.tooling/
+*.log
+*.pid
+runtime/
+bridge/node_modules/
+frontend/.npm-cache/
+bridge/.npm-cache/

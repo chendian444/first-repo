@@ -1,0 +1,15 @@
+# Generated build output and local runtime state
+**/node_modules/
+**/target/
+**/dist/
+**/runtime/
+**/data/history/
+**/__pycache__/
+*.pyc
+*.tsbuildinfo
+tests/build/
+firmware/USER/Objects/
+firmware/USER/Listings/
+.env
+.env.*
+!.env.example

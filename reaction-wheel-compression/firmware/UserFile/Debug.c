@@ -1,0 +1,61 @@
+#include "app.h"
+
+Print_data_t Print_data;
+
+u8 debug_data[]=
+{	
+	0x23,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00
+};
+
+u8 text_cnt = 0;
+
+void UsartPrint(void) // 上位机打印数据，一共16通道，可自行修改其它上位机
+{
+	u8 i;
+	if(Tx3_Flag == 0)
+	{
+		/* UART3_SendDataDMA owns the busy flag. */
+
+		Print_data.data1  = mpu6500.gyro.filter.x;
+		Print_data.data2  = mpu6500.gyro.filter.y;
+		Print_data.data3  = mpu6500.gyro.filter.z;		
+		Print_data.data4  = 0;
+		Print_data.data5  = 0;
+		Print_data.data6  = 0;
+		
+		Print_data.data7  = 0;
+		Print_data.data8  = 0;
+		Print_data.data9  = 0;
+		
+		Print_data.data10 = 0;
+		Print_data.data11 = 0;
+		
+		Print_data.data12 = 0;
+		Print_data.data13 = 0;
+		Print_data.data14 = 0;
+		
+		Print_data.data15 = Rc.x_f;
+		Print_data.data16 = Rc.y_f;
+		
+		debug_data[0] = 0x23;
+		memcpy(debug_data+1,&Print_data,sizeof(Print_data));
+		
+		debug_data[65]=0;
+		for(i=1;i<65;i++)
+		{	  				    
+			debug_data[65] += debug_data[i];
+		}	
+		
+		UART3_SendDataDMA(debug_data,66);
+	}
+}
+

@@ -1,0 +1,15 @@
+{
+  "historicalReplayFrames": 1000,
+  "binaryUpload": "PASS",
+  "crcAtomicRejection": "PASS",
+  "httpIdempotency": "PASS",
+  "configurationBounds": "PASS",
+  "serialPTYCapture": "PASS",
+  "deviceConfigConfirmation": "PASS",
+  "rawBytesExact": "PASS",
+  "hostCommands": [
+    "OPEN_TELEMETRY",
+    "TELEMETRY_CONFIG"
+  ],
+  "hardwareTested": false
+}
