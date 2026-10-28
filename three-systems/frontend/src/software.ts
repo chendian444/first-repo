@@ -1,7 +1,7 @@
 export const software = import.meta.env.VITE_SOFTWARE === 'monitor' ? 'monitor'
   : import.meta.env.VITE_SOFTWARE === 'prediction' ? 'prediction' : 'adaptive'
 export const softwareTitle = {
-  monitor: '多源网络传输状态实时监测软件',
-  adaptive: '自适应数据压缩策略分析与优化软件',
-  prediction: '基于时序特征的网络传输速率智能预测软件'
+  monitor: '工业网络传输状态实时感知与监测系统',
+  adaptive: '运行监测数据自适应压缩传输控制决策与优化系统',
+  prediction: '工业网络数据传输智能诊断与预测系统'
 }[software]

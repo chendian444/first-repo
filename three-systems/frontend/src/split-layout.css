@@ -23,7 +23,7 @@
 .prediction-software .prediction-kpis strong { overflow-wrap: anywhere; white-space: normal !important; }
 /* Reference sketch: sender / link in the upper row, compact receiver / queue below. */
 .monitor-software { height: auto; min-height: calc(100vh - 98px); grid-template-rows: auto auto; }
-.monitor-software .transmission-layout { height: auto; grid-template-columns: 340px minmax(0, 1fr); grid-template-rows: minmax(840px, 1fr) 250px; grid-template-areas: 'sender route' 'receiver queue'; gap: 16px; }
+.monitor-software .transmission-layout { height: auto; grid-template-columns: 340px minmax(0, 1fr); grid-template-rows: minmax(900px, 1fr) 250px; grid-template-areas: 'sender route' 'receiver queue'; gap: 16px; }
 .monitor-software .sender-panel { grid-area: sender; }
 .monitor-software .route-panel { grid-area: route; min-width: 0; }
 .monitor-software .receiver-panel { grid-area: receiver; min-height: 0; }

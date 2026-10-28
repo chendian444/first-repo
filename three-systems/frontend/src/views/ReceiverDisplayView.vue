@@ -3,6 +3,7 @@ import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import DonutChart from '@/components/DonutChart.vue'
 import PanelTitle from '@/components/PanelTitle.vue'
 import { dashboardApi } from '@/api/dashboard'
+import { softwareTitle } from '@/software'
 import type { DelayItem, EffectDashboard, ReceiverStatus, TransferTaskItem, TransmissionDashboard } from '@/types/dashboard'
 
 const transmission = ref<TransmissionDashboard | null>(null)
@@ -142,7 +143,7 @@ function stageMark(status: string) {
     <header class="topbar">
       <div class="brand">
         <span class="brand-cube"><i></i><i></i><i></i></span>
-        <span>数据压缩控制传输系统</span>
+        <span>{{ softwareTitle }}</span>
       </div>
       <div class="top-actions">
         <span class="top-status"><b class="status-dot"></b>系统在线</span>

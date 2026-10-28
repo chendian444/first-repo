@@ -1,0 +1,92 @@
+[
+  {
+    "software": "monitor",
+    "document": "工业网络传输状态实时感知与监测系统V1.0_源代码.docx",
+    "type": "source",
+    "pages": 60,
+    "A4": true,
+    "legacyDocPagesMatch": false,
+    "sourceLinesPerPage": 50,
+    "templateTableGeometryPreserved": false
+  },
+  {
+    "software": "monitor",
+    "document": "工业网络传输状态实时感知与监测系统V1.0_软件操作说明书.docx",
+    "type": "manual",
+    "pages": 24,
+    "A4": true,
+    "legacyDocPagesMatch": true,
+    "sourceLinesPerPage": null,
+    "templateTableGeometryPreserved": false
+  },
+  {
+    "software": "monitor",
+    "document": "工业网络传输状态实时感知与监测系统V1.0_软著登记信息采集表.docx",
+    "type": "form",
+    "pages": 3,
+    "A4": true,
+    "legacyDocPagesMatch": true,
+    "sourceLinesPerPage": null,
+    "templateTableGeometryPreserved": true
+  },
+  {
+    "software": "adaptive",
+    "document": "运行监测数据自适应压缩传输控制决策与优化系统V1.0_源代码.docx",
+    "type": "source",
+    "pages": 60,
+    "A4": true,
+    "legacyDocPagesMatch": false,
+    "sourceLinesPerPage": 50,
+    "templateTableGeometryPreserved": false
+  },
+  {
+    "software": "adaptive",
+    "document": "运行监测数据自适应压缩传输控制决策与优化系统V1.0_软件操作说明书.docx",
+    "type": "manual",
+    "pages": 24,
+    "A4": true,
+    "legacyDocPagesMatch": true,
+    "sourceLinesPerPage": null,
+    "templateTableGeometryPreserved": false
+  },
+  {
+    "software": "adaptive",
+    "document": "运行监测数据自适应压缩传输控制决策与优化系统V1.0_软著登记信息采集表.docx",
+    "type": "form",
+    "pages": 3,
+    "A4": true,
+    "legacyDocPagesMatch": true,
+    "sourceLinesPerPage": null,
+    "templateTableGeometryPreserved": true
+  },
+  {
+    "software": "prediction",
+    "document": "工业网络数据传输智能诊断与预测系统V1.0_源代码.docx",
+    "type": "source",
+    "pages": 60,
+    "A4": true,
+    "legacyDocPagesMatch": false,
+    "sourceLinesPerPage": 50,
+    "templateTableGeometryPreserved": false
+  },
+  {
+    "software": "prediction",
+    "document": "工业网络数据传输智能诊断与预测系统V1.0_软件操作说明书.docx",
+    "type": "manual",
+    "pages": 24,
+    "A4": true,
+    "legacyDocPagesMatch": true,
+    "sourceLinesPerPage": null,
+    "templateTableGeometryPreserved": false
+  },
+  {
+    "software": "prediction",
+    "document": "工业网络数据传输智能诊断与预测系统V1.0_软著登记信息采集表.docx",
+    "type": "form",
+    "pages": 3,
+    "A4": true,
+    "legacyDocPagesMatch": true,
+    "sourceLinesPerPage": null,
+    "templateTableGeometryPreserved": true
+  }
+]

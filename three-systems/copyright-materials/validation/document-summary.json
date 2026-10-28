@@ -1,0 +1,32 @@
+[
+  {
+    "software": "monitor",
+    "name": "工业网络传输状态实时感知与监测系统",
+    "sourceNonblankLines": 14564,
+    "sourcePhysicalLines": 15768,
+    "sourceFiles": 86,
+    "codePages": 60,
+    "codeLinesPerPage": 50,
+    "manualPlannedPages": 24
+  },
+  {
+    "software": "adaptive",
+    "name": "运行监测数据自适应压缩传输控制决策与优化系统",
+    "sourceNonblankLines": 14648,
+    "sourcePhysicalLines": 15861,
+    "sourceFiles": 87,
+    "codePages": 60,
+    "codeLinesPerPage": 50,
+    "manualPlannedPages": 24
+  },
+  {
+    "software": "prediction",
+    "name": "工业网络数据传输智能诊断与预测系统",
+    "sourceNonblankLines": 14613,
+    "sourcePhysicalLines": 15817,
+    "sourceFiles": 86,
+    "codePages": 60,
+    "codeLinesPerPage": 50,
+    "manualPlannedPages": 24
+  }
+]

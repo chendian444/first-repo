@@ -8,6 +8,11 @@ required = {
  'prediction': ['发送端配置', '接收端状态', '长短期记忆网络速率预测对比', '预测模型', '预测健康', '速率贴合度', '趋势一致率', '平均分片时延', '平均传输速率', '分片抖动', '平均网络延迟', '丢包率', '网络抖动', '平均有效吞吐率', '网络吞吐率', '重试次数', '完整性校验', '传输进度', '已处理帧/总帧']
 }
 results = []
+software_titles = {
+ 'monitor': '工业网络传输状态实时感知与监测系统',
+ 'adaptive': '运行监测数据自适应压缩传输控制决策与优化系统',
+ 'prediction': '工业网络数据传输智能诊断与预测系统'
+}
 with sync_playwright() as p:
  browser = p.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox'])
  for width,height in [(1920,1080),(2560,1440),(1440,900)]:
@@ -16,6 +21,8 @@ with sync_playwright() as p:
    errors = []; page.on('pageerror',lambda e: errors.append(str(e)))
    page.goto(f'http://127.0.0.1:{port}/analysis')
    page.get_by_text('发送端配置',exact=True).wait_for();page.wait_for_timeout(1500)
+   assert page.title() == software_titles[kind]
+   assert page.locator('.brand').inner_text() == software_titles[kind]
    for label in required[kind]:
     locator=page.get_by_text(label,exact=True) if label!='关键指标' else page.locator('.section-heading h2').filter(has_text=label)
     assert locator.count()>0,(kind,label)
@@ -50,6 +57,10 @@ with sync_playwright() as p:
    style=page.locator('body').evaluate('(n)=>({font:getComputedStyle(n).fontFamily,color:getComputedStyle(n).color,background:getComputedStyle(n).backgroundColor})')
    results.append({'software':kind,'viewport':[width,height],'requiredLabels':required[kind],'pageErrors':errors,'style':style,'panels':boxes})
    if width==1920: page.screenshot(path=str(out/f'{kind}-overview.png'),full_page=True)
+   page.goto(f'http://127.0.0.1:{port}/receiver')
+   page.get_by_text('接收端配置',exact=True).wait_for()
+   assert page.title() == software_titles[kind]
+   assert page.locator('.brand').inner_text() == software_titles[kind]
    page.close()
  browser.close()
 (out/'ui-checks.json').write_text(json.dumps(results,ensure_ascii=False,indent=2))
