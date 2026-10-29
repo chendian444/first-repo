@@ -4,6 +4,8 @@
 
 基于 AT32F403A 平衡立方体与 DataCompress_System，实现单片机无损压缩、USART3 传输、Python 串口上传、Java 校验解压和 Vue 遥测监控。
 
+2026-10-29 操作说明更新：已按 **CH340→COM5、STC 普通 USB-TTL→COM6、AT32 已焊在 PCB 上**重写[完整操作手册](完整压缩传输操作手册.md)，增加 CN3 接线、适配器自检、SWD 编译烧录、配置闭环及分阶段验收。只需择一 USB-TTL 采集；更新固件另需兼容的下载工具。新手册已更新至仓库，现有 ZIP 未重新打包，包中旧说明以仓库手册为准。
+
 ## 下载与使用
 
 - [完整运行包（约 40 MB）](../deliverables/reaction-wheel-compression-v1.1-integration.zip)：包含完整源码、后端 JAR、前端 dist、网关依赖、串口工具及中文说明。点击文件页的下载按钮，或使用 [直接下载链接](https://github.com/chendian444/first-repo/raw/refs/heads/main/deliverables/reaction-wheel-compression-v1.1-integration.zip)。
@@ -28,12 +30,20 @@ powershell -ExecutionPolicy Bypass -File .\DataCompress_System\run.ps1
 python .\serial-agent\wheel_agent.py --replay .\examples\historical-gyro.dcw --backend http://127.0.0.1:8082 --pace 0.2
 ```
 
-接入真实硬件后安装 pyserial，再将 COM4 换成实际串口：
+接入真实硬件并确认新固件运行后安装 pyserial，优先使用 CH340（COM5）：
 
 ```powershell
 python -m pip install -r .\serial-agent\requirements.txt
-python .\serial-agent\wheel_agent.py --port COM4 --enable-stream --backend http://127.0.0.1:8082
+python .\serial-agent\wheel_agent.py --port COM5 --baud 230400 --enable-stream --backend http://127.0.0.1:8082
 ```
+
+若改用 STC 普通 USB-TTL（COM6），先停止 COM5 采集并断电换线，再执行：
+
+```powershell
+python .\serial-agent\wheel_agent.py --port COM6 --baud 230400 --enable-stream --backend http://127.0.0.1:8082
+```
+
+同版本原理图的 CN3：1=GND、5=板端 TX（接适配器 RX）、6=板端 RX（接适配器 TX）。使用 3.3 V TTL 信号，适配器 VCC 不接；CN3-2 是电源相关脚，不能当 3.3 V VTref。实物版本、1 脚和插头方向须先核对，详情见手册。
 
 依赖 Java 17、Node.js 18.17+、Python 3.9+。真实板卡需先使用 Keil/ARMCC 5.06 编译并烧录本包新源码。
 
