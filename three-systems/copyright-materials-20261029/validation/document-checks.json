@@ -1,0 +1,86 @@
+[
+  {
+    "software": "monitor",
+    "document": "工业网络传输状态实时感知与监测系统V1.0_软件操作说明书_用户参考件.docx",
+    "type": "manual",
+    "pages": 27,
+    "referenceStylesIdentical": true,
+    "A4AndMarginsMatch": true,
+    "referenceFile": true
+  },
+  {
+    "software": "monitor",
+    "document": "工业网络传输状态实时感知与监测系统V1.0_软著登记信息采集表_用户参考件.docx",
+    "type": "form",
+    "pages": 4,
+    "referenceStylesIdentical": true,
+    "A4AndMarginsMatch": true,
+    "referenceFile": true
+  },
+  {
+    "software": "monitor",
+    "document": "工业网络传输状态实时感知与监测系统V1.0_源代码.docx",
+    "type": "source",
+    "pages": 60,
+    "sourceLines": 3000,
+    "linesPerPage": 50,
+    "onlyOwnEntry": true,
+    "sourceLineMappingVerified": true
+  },
+  {
+    "software": "adaptive",
+    "document": "运行监测数据自适应压缩传输控制决策与优化系统V1.0_软件操作说明书.docx",
+    "type": "manual",
+    "pages": 27,
+    "referenceStylesIdentical": true,
+    "A4AndMarginsMatch": true,
+    "referenceFile": false
+  },
+  {
+    "software": "adaptive",
+    "document": "运行监测数据自适应压缩传输控制决策与优化系统V1.0_软著登记信息采集表.docx",
+    "type": "form",
+    "pages": 4,
+    "referenceStylesIdentical": true,
+    "A4AndMarginsMatch": true,
+    "referenceFile": false
+  },
+  {
+    "software": "adaptive",
+    "document": "运行监测数据自适应压缩传输控制决策与优化系统V1.0_源代码.docx",
+    "type": "source",
+    "pages": 60,
+    "sourceLines": 3000,
+    "linesPerPage": 50,
+    "onlyOwnEntry": true,
+    "sourceLineMappingVerified": true
+  },
+  {
+    "software": "prediction",
+    "document": "工业网络数据传输智能诊断与预测系统V1.0_软件操作说明书.docx",
+    "type": "manual",
+    "pages": 28,
+    "referenceStylesIdentical": true,
+    "A4AndMarginsMatch": true,
+    "referenceFile": false
+  },
+  {
+    "software": "prediction",
+    "document": "工业网络数据传输智能诊断与预测系统V1.0_软著登记信息采集表.docx",
+    "type": "form",
+    "pages": 4,
+    "referenceStylesIdentical": true,
+    "A4AndMarginsMatch": true,
+    "referenceFile": false
+  },
+  {
+    "software": "prediction",
+    "document": "工业网络数据传输智能诊断与预测系统V1.0_源代码.docx",
+    "type": "source",
+    "pages": 60,
+    "sourceLines": 3000,
+    "linesPerPage": 50,
+    "onlyOwnEntry": true,
+    "sourceLineMappingVerified": true
+  }
+]

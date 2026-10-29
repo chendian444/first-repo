@@ -1,0 +1,37 @@
+[
+  {
+    "download": "deliverables/three-systems-word-20261029/monitor-source.docx",
+    "canonical": "three-systems/copyright-materials-20261029/monitor/工业网络传输状态实时感知与监测系统V1.0_源代码.docx",
+    "sha256": "25658624a179b2bf6a8afdb54a737372486bbc0ffc05161d4eb37e5f2deb25d1"
+  },
+  {
+    "download": "deliverables/three-systems-word-20261029/adaptive-manual.docx",
+    "canonical": "three-systems/copyright-materials-20261029/adaptive/运行监测数据自适应压缩传输控制决策与优化系统V1.0_软件操作说明书.docx",
+    "sha256": "65cb8b58b5ae831eb40996cd7c3bae18a1f19b55d9df61c95fa063b7cc26b67b"
+  },
+  {
+    "download": "deliverables/three-systems-word-20261029/adaptive-registration.docx",
+    "canonical": "three-systems/copyright-materials-20261029/adaptive/运行监测数据自适应压缩传输控制决策与优化系统V1.0_软著登记信息采集表.docx",
+    "sha256": "d6460142d00aef3f53aece094045c9b389384c3a5b8fe2a91db26ec747b304e6"
+  },
+  {
+    "download": "deliverables/three-systems-word-20261029/adaptive-source.docx",
+    "canonical": "three-systems/copyright-materials-20261029/adaptive/运行监测数据自适应压缩传输控制决策与优化系统V1.0_源代码.docx",
+    "sha256": "74a81cf24f72e0997044f9ce3da875d5d3f49869304a8520c167074aec829064"
+  },
+  {
+    "download": "deliverables/three-systems-word-20261029/prediction-manual.docx",
+    "canonical": "three-systems/copyright-materials-20261029/prediction/工业网络数据传输智能诊断与预测系统V1.0_软件操作说明书.docx",
+    "sha256": "4d20f724ec09d96e2455e15904b32775556572fb5a232e0ee32a50df9b7cb999"
+  },
+  {
+    "download": "deliverables/three-systems-word-20261029/prediction-registration.docx",
+    "canonical": "three-systems/copyright-materials-20261029/prediction/工业网络数据传输智能诊断与预测系统V1.0_软著登记信息采集表.docx",
+    "sha256": "7a7f5f0dee19340b6340ec1d01a5a4ff1e7b4d75fbc7b8ab6d269da662efd9ae"
+  },
+  {
+    "download": "deliverables/three-systems-word-20261029/prediction-source.docx",
+    "canonical": "three-systems/copyright-materials-20261029/prediction/工业网络数据传输智能诊断与预测系统V1.0_源代码.docx",
+    "sha256": "efef52eb822c5ac0b271c6bcba8dcaabc4e391bcfc3a2f6fece41107ccb66c4d"
+  }
+]

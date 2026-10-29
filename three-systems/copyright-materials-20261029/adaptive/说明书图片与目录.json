@@ -1,0 +1,371 @@
+{
+  "images": [
+    {
+      "asset": "directory",
+      "pixels": [
+        1700,
+        538
+      ],
+      "widthCm": 14.65,
+      "heightCm": 4.636294117647059,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "versions",
+      "pixels": [
+        1700,
+        308
+      ],
+      "widthCm": 14.65,
+      "heightCm": 2.654235294117647,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "startup",
+      "pixels": [
+        1700,
+        192
+      ],
+      "widthCm": 14.65,
+      "heightCm": 1.6545882352941177,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "overview",
+      "pixels": [
+        3840,
+        800
+      ],
+      "widthCm": 14.65,
+      "heightCm": 3.0520833333333335,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "receiver-check",
+      "pixels": [
+        1700,
+        616
+      ],
+      "widthCm": 14.35064935064935,
+      "heightCm": 5.2,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "overview",
+      "pixels": [
+        3840,
+        800
+      ],
+      "widthCm": 14.65,
+      "heightCm": 3.0520833333333335,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "metrics",
+      "pixels": [
+        2356,
+        192
+      ],
+      "widthCm": 14.65,
+      "heightCm": 1.1938879456706282,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "queue",
+      "pixels": [
+        2408,
+        376
+      ],
+      "widthCm": 14.65,
+      "heightCm": 2.287541528239203,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "auto",
+      "pixels": [
+        580,
+        484
+      ],
+      "widthCm": 6.231404958677686,
+      "heightCm": 5.2,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "manual",
+      "pixels": [
+        580,
+        618
+      ],
+      "widthCm": 4.880258899676376,
+      "heightCm": 5.2,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "algorithms",
+      "pixels": [
+        1640,
+        542
+      ],
+      "widthCm": 14.65,
+      "heightCm": 4.841646341463415,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "config",
+      "pixels": [
+        636,
+        232
+      ],
+      "widthCm": 8.41375,
+      "heightCm": 3.069166666666667,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "ingress",
+      "pixels": [
+        580,
+        272
+      ],
+      "widthCm": 7.6729166666666675,
+      "heightCm": 3.598333333333334,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "feature",
+      "pixels": [
+        2408,
+        800
+      ],
+      "widthCm": 14.65,
+      "heightCm": 4.867109634551495,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "recommendation",
+      "pixels": [
+        2408,
+        964
+      ],
+      "widthCm": 12.989211618257261,
+      "heightCm": 5.2,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "feature-details",
+      "pixels": [
+        2332,
+        800
+      ],
+      "widthCm": 14.65,
+      "heightCm": 5.025728987993139,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "progress",
+      "pixels": [
+        2496,
+        364
+      ],
+      "widthCm": 14.65,
+      "heightCm": 2.1364583333333336,
+      "ratioPreserved": true
+    },
+    {
+      "asset": "receiver",
+      "pixels": [
+        564,
+        370
+      ],
+      "widthCm": 7.46125,
+      "heightCm": 4.894791666666666,
+      "ratioPreserved": true
+    }
+  ],
+  "toc": [
+    {
+      "text": "1引言",
+      "level": 1,
+      "placeholder": "1引言\t0"
+    },
+    {
+      "text": "1.1编写目的",
+      "level": 2,
+      "placeholder": "1.1编写目的\t0"
+    },
+    {
+      "text": "1.2参考资料",
+      "level": 2,
+      "placeholder": "1.2参考资料\t0"
+    },
+    {
+      "text": "1.3术语和缩略词",
+      "level": 2,
+      "placeholder": "1.3术语和缩略词\t0"
+    },
+    {
+      "text": "2软件概述",
+      "level": 1,
+      "placeholder": "2软件概述\t0"
+    },
+    {
+      "text": "2.1软件功能",
+      "level": 2,
+      "placeholder": "2.1软件功能\t0"
+    },
+    {
+      "text": "2.2软件运行",
+      "level": 2,
+      "placeholder": "2.2软件运行\t0"
+    },
+    {
+      "text": "2.3系统要求",
+      "level": 2,
+      "placeholder": "2.3系统要求\t0"
+    },
+    {
+      "text": "2.3.1 硬件环境",
+      "level": 3,
+      "placeholder": "2.3.1 硬件环境\t0"
+    },
+    {
+      "text": "2.3.2  软件环境",
+      "level": 3,
+      "placeholder": "2.3.2  软件环境\t0"
+    },
+    {
+      "text": "2.4  软件安装与部署",
+      "level": 2,
+      "placeholder": "2.4  软件安装与部署\t0"
+    },
+    {
+      "text": "3操作说明",
+      "level": 1,
+      "placeholder": "3操作说明\t0"
+    },
+    {
+      "text": "3.1软件启动、停止与连接",
+      "level": 2,
+      "placeholder": "3.1软件启动、停止与连接\t0"
+    },
+    {
+      "text": "3.1.1 Windows 启动",
+      "level": 3,
+      "placeholder": "3.1.1 Windows 启动\t0"
+    },
+    {
+      "text": "3.1.2  Linux / macOS启动",
+      "level": 3,
+      "placeholder": "3.1.2  Linux / macOS启动\t0"
+    },
+    {
+      "text": "3.1.3  停止软件",
+      "level": 3,
+      "placeholder": "3.1.3  停止软件\t0"
+    },
+    {
+      "text": "3.1.4  单独启动接收端",
+      "level": 3,
+      "placeholder": "3.1.4  单独启动接收端\t0"
+    },
+    {
+      "text": "3.1.5  启动失败时查看日志",
+      "level": 3,
+      "placeholder": "3.1.5  启动失败时查看日志\t0"
+    },
+    {
+      "text": "3.2主界面与基本操作",
+      "level": 2,
+      "placeholder": "3.2主界面与基本操作\t0"
+    },
+    {
+      "text": "3.2.1  主界面区域",
+      "level": 3,
+      "placeholder": "3.2.1  主界面区域\t0"
+    },
+    {
+      "text": "3.2.2  查看关键指标",
+      "level": 3,
+      "placeholder": "3.2.2  查看关键指标\t0"
+    },
+    {
+      "text": "3.2.3  选择和查看任务",
+      "level": 3,
+      "placeholder": "3.2.3  选择和查看任务\t0"
+    },
+    {
+      "text": "3.3 发送端配置",
+      "level": 2,
+      "placeholder": "3.3 发送端配置\t0"
+    },
+    {
+      "text": "3.3.1数据接入方式",
+      "level": 3,
+      "placeholder": "3.3.1数据接入方式\t0"
+    },
+    {
+      "text": "3.4压缩传输决策与优化",
+      "level": 2,
+      "placeholder": "3.4压缩传输决策与优化\t0"
+    },
+    {
+      "text": "3.5接收端与跨计算机部署",
+      "level": 2,
+      "placeholder": "3.5接收端与跨计算机部署\t0"
+    },
+    {
+      "text": "3.5.1本机接收",
+      "level": 3,
+      "placeholder": "3.5.1本机接收\t0"
+    },
+    {
+      "text": "3.5.2跨计算机接收",
+      "level": 3,
+      "placeholder": "3.5.2跨计算机接收\t0"
+    },
+    {
+      "text": "3.6策略评估与异常处理",
+      "level": 2,
+      "placeholder": "3.6策略评估与异常处理\t0"
+    },
+    {
+      "text": "3.7运行数据与日志查看",
+      "level": 2,
+      "placeholder": "3.7运行数据与日志查看\t0"
+    }
+  ],
+  "reference": "/workspace/work/softcopyright-revision/templates/监测软件操作说明书样本.docx",
+  "tocPages": {
+    "1引言": 1,
+    "1.1编写目的": 1,
+    "1.2参考资料": 1,
+    "1.3术语和缩略词": 2,
+    "2软件概述": 3,
+    "2.1软件功能": 3,
+    "2.2软件运行": 5,
+    "2.3系统要求": 5,
+    "2.3.1 硬件环境": 5,
+    "2.3.2  软件环境": 5,
+    "2.4  软件安装与部署": 6,
+    "3操作说明": 8,
+    "3.1软件启动、停止与连接": 8,
+    "3.1.1 Windows 启动": 8,
+    "3.1.2  Linux / macOS启动": 9,
+    "3.1.3  停止软件": 10,
+    "3.1.4  单独启动接收端": 10,
+    "3.1.5  启动失败时查看日志": 11,
+    "3.2主界面与基本操作": 11,
+    "3.2.1  主界面区域": 11,
+    "3.2.2  查看关键指标": 12,
+    "3.2.3  选择和查看任务": 13,
+    "3.3 发送端配置": 13,
+    "3.3.1数据接入方式": 15,
+    "3.4压缩传输决策与优化": 18,
+    "3.5接收端与跨计算机部署": 22,
+    "3.5.1本机接收": 22,
+    "3.5.2跨计算机接收": 22,
+    "3.6策略评估与异常处理": 23,
+    "3.7运行数据与日志查看": 24
+  },
+  "draftPhysicalPages": 27,
+  "bodyStartPhysicalPage": 4
+}

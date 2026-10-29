@@ -1,0 +1,23 @@
+[
+  {
+    "software": "monitor",
+    "name": "工业网络传输状态实时感知与监测系统",
+    "sourceLines": 14259,
+    "sourcePages": 60,
+    "sourceFiles": 84
+  },
+  {
+    "software": "adaptive",
+    "name": "运行监测数据自适应压缩传输控制决策与优化系统",
+    "sourceLines": 14343,
+    "sourcePages": 60,
+    "sourceFiles": 85
+  },
+  {
+    "software": "prediction",
+    "name": "工业网络数据传输智能诊断与预测系统",
+    "sourceLines": 14601,
+    "sourcePages": 60,
+    "sourceFiles": 86
+  }
+]

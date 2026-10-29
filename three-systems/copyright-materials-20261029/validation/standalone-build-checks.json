@@ -1,0 +1,23 @@
+[
+  {
+    "software": "monitor",
+    "name": "工业网络传输状态实时感知与监测系统",
+    "buildPassed": true,
+    "onlyOwnEntry": true,
+    "sharedDependenciesIncluded": true
+  },
+  {
+    "software": "adaptive",
+    "name": "运行监测数据自适应压缩传输控制决策与优化系统",
+    "buildPassed": true,
+    "onlyOwnEntry": true,
+    "sharedDependenciesIncluded": true
+  },
+  {
+    "software": "prediction",
+    "name": "工业网络数据传输智能诊断与预测系统",
+    "buildPassed": true,
+    "onlyOwnEntry": true,
+    "sharedDependenciesIncluded": true
+  }
+]

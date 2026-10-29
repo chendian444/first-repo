@@ -1,0 +1,52 @@
+[
+  {
+    "software": "adaptive",
+    "partialRegionScreenshots": true,
+    "deviceScaleFactor": 2,
+    "pageErrors": [],
+    "files": [
+      "actions.png",
+      "auto.png",
+      "config.png",
+      "directory.png",
+      "feature-details.png",
+      "feature.png",
+      "ingress.png",
+      "manual.png",
+      "metrics.png",
+      "overview.png",
+      "progress.png",
+      "queue.png",
+      "receiver-check.png",
+      "receiver.png",
+      "recommendation.png",
+      "startup.png",
+      "versions.png"
+    ]
+  },
+  {
+    "software": "prediction",
+    "partialRegionScreenshots": true,
+    "deviceScaleFactor": 2,
+    "pageErrors": [],
+    "files": [
+      "actions.png",
+      "auto.png",
+      "config.png",
+      "directory.png",
+      "feature-details.png",
+      "feature.png",
+      "ingress.png",
+      "manual.png",
+      "metrics.png",
+      "overview.png",
+      "progress.png",
+      "queue.png",
+      "receiver-check.png",
+      "receiver.png",
+      "recommendation.png",
+      "startup.png",
+      "versions.png"
+    ]
+  }
+]
