@@ -19,9 +19,11 @@
 
 新增 AT32F403A 单片机压缩、USART3 传输和上位机解压监控工程，与原三个软件目录分别保存。
 
-- [完整源码与说明](reaction-wheel-compression)
-- [完整运行包（约 40 MB）](deliverables/reaction-wheel-compression-integration.zip)
-- [完整压缩传输操作手册](reaction-wheel-compression/完整压缩传输操作手册.md)
-- [验证报告](reaction-wheel-compression/验证报告.md)
+- [完整源码与说明](reaction-wheel-compression-v1.1)
+- [完整运行包（约 40 MB）](deliverables/reaction-wheel-compression-v1.1-integration.zip)
+- [完整压缩传输操作手册](reaction-wheel-compression-v1.1/完整压缩传输操作手册.md)
+- [验证报告](reaction-wheel-compression-v1.1/验证报告.md)
 
 软件链路已验证；真实 AT32 板上的 Keil 完整编译、烧录和控制时序验收仍需完成。
+
+动量轮工程现为 v1.1 构建配置修订版；旧目录已替换。详见 [Keil 构建修订说明](reaction-wheel-compression-v1.1/Keil构建修订说明.md)。C9511E 仍需修复本机 MDK 产品/授权环境，尚未完成实际 Keil 全工程 Rebuild。

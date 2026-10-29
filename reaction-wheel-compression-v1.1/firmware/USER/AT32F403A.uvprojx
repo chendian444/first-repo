@@ -318,7 +318,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <useXO>0</useXO>
             <v6Lang>3</v6Lang>
             <v6LangP>3</v6LangP>
@@ -329,7 +329,7 @@
             <v6Rtti>0</v6Rtti>
             <VariousControls>
               <MiscControls />
-              <Define>HEXT_VALUE=25000000</Define>
+              <Define>AT32F403ARCT7,HEXT_VALUE=25000000</Define>
               <Undefine />
               <IncludePath>..\AT32F403A_StdPeriph_Driver\inc;..\USER;..\UserFile;..\cmsis\core_support;..\cmsis\device_support;..\cmsis\device_support\startup</IncludePath>
             </VariousControls>

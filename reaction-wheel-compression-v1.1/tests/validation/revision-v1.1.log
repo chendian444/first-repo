@@ -1,0 +1,32 @@
+$ python tools/check_keil_build.py
+PASS: project XML, source/library paths, device macro and C99 settings
+NOTE: this static check does not prove ARMCC licensing or full firmware build success.
+ARMCC compile/link: NOT RUN (pass --arm-bin in a correctly installed MDK environment)
+
+exit=0
+
+$ python tests/test_protocol.py
+test_corruption_fragmentation_resync (__main__.ProtocolTest.test_corruption_fragmentation_resync) ... ok
+test_cross_language_bit_exact (__main__.ProtocolTest.test_cross_language_bit_exact) ... ok
+test_historical_capture (__main__.ProtocolTest.test_historical_capture) ... ok
+test_limits_crc_config (__main__.ProtocolTest.test_limits_crc_config) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.104s
+
+OK
+
+exit=0
+
+$ tests/build/test_telemetry
+MCU telemetry scheduling, busy DMA, fragmented config and CRC rejection: PASS
+
+exit=0
+
+$ gcc -std=c99 -fsyntax-only -DAT32F403ARCT7 -D__ARM_ARCH_7EM__ -Wno-pointer-to-int-cast -Wno-int-to-pointer-cast -Ifirmware/UserFile -Ifirmware/USER -Ifirmware/AT32F403A_StdPeriph_Driver/inc -Ifirmware/cmsis/core_support -Ifirmware/cmsis/device_support firmware/UserFile/WheelCodec.c firmware/UserFile/WheelTelemetry.c firmware/UserFile/usart.c firmware/UserFile/timer.c firmware/UserFile/app.c firmware/UserFile/Debug.c
+
+exit=0
+
+Negative check: missing compiler correctly returns nonzero exit 2.
+
+NOT RUN: ARMCC5/Keil complete Rebuild, hardware flash and control timing.

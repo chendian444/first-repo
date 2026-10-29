@@ -1,0 +1,15 @@
+{
+  "version": "1.1",
+  "date": "2026-10-29",
+  "changes": [
+    "Explicit AT32F403ARCT7 macro",
+    "Explicit C99 compiler setting",
+    "Keil project and local ARMCC smoke-check tool",
+    "Licensing/build troubleshooting guide"
+  ],
+  "notVerified": [
+    "Licensed ARMCC5 full Rebuild",
+    "Hardware flash and control timing"
+  ],
+  "licenseErrorFixedBySource": false
+}
