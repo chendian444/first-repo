@@ -1,0 +1,11 @@
+{
+  "fixture": "historical CSV converted to legacy UART; not current hardware",
+  "frames": 1000,
+  "legacySerialFrameBytes": 66000,
+  "rawPayloadBytes": 64000,
+  "compressedPayloadBytes": 14028,
+  "networkFrameBodyBytes": 36028,
+  "payloadSavingPercent": 78.08125,
+  "networkBodySavingVsLegacyPercent": 45.412121212121214,
+  "httpTcpOverheadIncluded": false
+}

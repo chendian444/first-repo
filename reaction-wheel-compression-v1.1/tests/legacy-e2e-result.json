@@ -1,0 +1,10 @@
+{
+  "legacyPTY": "PASS",
+  "onlyDeviceCommand": "a0ac08ba66",
+  "rawBytesExact": "PASS",
+  "hostAutoAndRawConfiguration": "PASS",
+  "serialRecording": "PASS",
+  "legacyReplayFrames": 50,
+  "csvLegacySemantics": "PASS",
+  "hardwareTested": false
+}

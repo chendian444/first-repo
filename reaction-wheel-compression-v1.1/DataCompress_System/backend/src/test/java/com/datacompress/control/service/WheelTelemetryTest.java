@@ -77,4 +77,34 @@ class WheelTelemetryTest {
         assertEquals("REPLAY",s.status().get("inputMode"));
         assertTrue(s.csv().startsWith("sequence,device_ms,"));
     }
+
+    @Test void hostFramesKeepBytesAndUseLegacyLabelsAndTiming() throws Exception {
+        byte[] f = vector(0); f[19] = 1;
+        f = sequence(f, 0, 0);
+        var s = new WheelTelemetryService(new DataSourceService());
+        s.ingest(f, "host", "serial-host");
+        assertEquals("HOST", s.status().get("compressionLocation"));
+        assertEquals("HOST_RECEIPT", s.status().get("timeSource"));
+        assertEquals("reserved_04", ((List<?>)s.status().get("channels")).get(3));
+        assertEquals(true, s.status().get("configApplied"));
+        assertEquals(66L, s.status().get("sourceWireBytes"));
+        assertArrayEquals(WheelFrameCodec.decodeBatch(f).get(0).raw(),
+                Base64.getDecoder().decode(s.history(1).get(0).rawBase64()));
+        assertTrue(s.csv().startsWith("host_sequence,host_elapsed_ms,"));
+        s.ingest(f, "replay", "replay-host");
+        assertEquals(false, s.status().get("configApplied"));
+    }
+
+    @Test void rejectsUnknownSourceAndMixedLayoutsAtomically() throws Exception {
+        byte[] device = vector(0), host = device.clone(); host[19] = 1;
+        host = sequence(host, 1, 10);
+        var s = new WheelTelemetryService(new DataSourceService());
+        byte[] mixed = join(device, host);
+        assertThrows(IllegalArgumentException.class, () -> s.ingest(mixed, "mixed", "serial-test"));
+        assertEquals(0L, s.status().get("acceptedFrames"));
+        byte[] unknown = host.clone(); unknown[19] = 2;
+        unknown = sequence(unknown, 2, 20);
+        byte[] invalid = unknown;
+        assertThrows(IllegalArgumentException.class, () -> WheelFrameCodec.decodeBatch(invalid));
+    }
 }

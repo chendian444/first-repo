@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Capture compressed UART telemetry or replay a recording into DataCompress_System."""
+"""Capture legacy UART and compress on PC, or ingest existing DCW1 telemetry."""
 import argparse
 import datetime
 import json
@@ -11,7 +11,7 @@ import urllib.error
 import urllib.request
 import uuid
 import sys
-from wheel_protocol import FrameParser, config_command
+from wheel_protocol import FrameParser, LegacyParser, config_command, encode
 
 OPEN_TELEMETRY = bytes.fromhex('A0 AC 08 BA 66')
 
@@ -29,8 +29,36 @@ def upload(base, session, batch_id, data):
                  'X-Wheel-Batch-Id': batch_id, 'X-Wheel-Session': session}, 'POST')
 
 
+class InputStream:
+    """Legacy conversion has PC receipt time and PC sequence, never device sample time."""
+    def __init__(self, protocol):
+        self.legacy = protocol == 'legacy'
+        self.parser = LegacyParser() if self.legacy else FrameParser()
+        self.config = ('AUTO', 10)
+        self.sequence = 0
+        self.origin = time.monotonic()
+
+    def apply(self, cfg):
+        # Validate before replacing the immutable snapshot shared with the serial thread.
+        config_command(cfg['mode'], cfg['periodMs'])
+        self.config = (cfg['mode'], cfg['periodMs'])
+
+    def feed(self, data):
+        for item in self.parser.feed(data):
+            if self.legacy:
+                mode, period = self.config
+                ticks = int((time.monotonic() - self.origin) * 1000)
+                yield encode(item, self.sequence, ticks, mode, period, source=1)
+                self.sequence += 1
+            else:
+                yield item
+
+
 def replay(args):
-    parser = FrameParser()
+    stream = InputStream(args.protocol)
+    parser = stream.parser
+    if stream.legacy:
+        stream.apply(http(args.backend, '/api/wheel/config'))
     session = 'replay-' + str(uuid.uuid4())
     batch, count = [], 0
     def send():
@@ -58,7 +86,7 @@ def replay(args):
             time.sleep(attempt + 1)
     with pathlib.Path(args.replay).open('rb') as source:
         while data := source.read(4096):
-            for frame in parser.feed(data):
+            for frame in stream.feed(data):
                 batch.append(frame)
                 if len(batch) >= 20:
                     send()
@@ -66,7 +94,7 @@ def replay(args):
     print(f'历史回放完成: {count} 帧; 无效候选={parser.invalid_candidates}; '
           f'丢弃字节={parser.discarded_bytes}; 未完成尾部={len(parser.buffer)} 字节')
     if not count:
-        raise RuntimeError('文件中没有 DCW1 遥测帧；旧版 0x23 协议请先使用原解析工具。')
+        raise RuntimeError('没有有效帧，请检查 --protocol legacy/dcw1 是否与记录格式一致。')
 
 
 def capture(args):
@@ -78,15 +106,19 @@ def capture(args):
         record = pathlib.Path(args.record)
     else:
         stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-        record = pathlib.Path('runtime') / f'wheel-{stamp}.dcw'
+        suffix = 'legacy' if args.protocol == 'legacy' else 'dcw'
+        record = pathlib.Path('runtime') / f'wheel-{stamp}.{suffix}'
     record.parent.mkdir(parents=True, exist_ok=True)
     pending = queue.Queue(maxsize=100)  # <=2000 frames; serial capture never waits for HTTP.
     stop = threading.Event()
     stats = {'uploaded': 0, 'queueDropped': 0}
     session = 'serial-' + str(uuid.uuid4())
-    parser = FrameParser()
+    stream = InputStream(args.protocol)
+    parser = stream.parser
     with serial.Serial(args.port, args.baud, timeout=0.02, write_timeout=0.5) as port, record.open('xb') as log:
         print(f'串口 {args.port}@{args.baud}；原始记录 {record.resolve()}', flush=True)
+        print('电脑压缩旧协议：周期控制上传组批；不改变板端采样。' if stream.legacy
+              else '接收板端 DCW1 压缩遥测。', flush=True)
         if args.enable_stream:
             port.write(OPEN_TELEMETRY)
         def worker():
@@ -97,7 +129,10 @@ def capture(args):
                     if time.monotonic() >= next_control:
                         next_control = time.monotonic() + 2
                         cfg = http(args.backend, '/api/wheel/config')
-                        port.write(config_command(cfg['mode'], cfg['periodMs']))
+                        if stream.legacy:
+                            stream.apply(cfg)
+                        else:
+                            port.write(config_command(cfg['mode'], cfg['periodMs']))
                     if item is None:
                         try:
                             item = pending.get(timeout=0.1)
@@ -121,6 +156,7 @@ def capture(args):
         batch = []
         last_flush = last_report = time.monotonic()
         received = 0
+        serial_bytes = 0
         def enqueue():
             if not batch:
                 return
@@ -133,17 +169,19 @@ def capture(args):
             while True:
                 data = port.read(min(max(port.in_waiting, 1), 4096))
                 if data:
+                    serial_bytes += len(data)
                     log.write(data)
-                    for frame in parser.feed(data):
+                    for frame in stream.feed(data):
                         batch.append(frame)
                         received += 1
                         if len(batch) >= 20:
                             enqueue()
                 now = time.monotonic()
-                if now - last_flush >= 0.1:
+                flush_period = stream.config[1] / 1000 if stream.legacy else 0.1
+                if now - last_flush >= flush_period:
                     enqueue(); log.flush(); last_flush = now
                 if now - last_report >= 5:
-                    print(f'接收={received} 上传={stats["uploaded"]} 无效候选={parser.invalid_candidates} '
+                    print(f'串口累计={serial_bytes}字节 接收={received} 上传={stats["uploaded"]} 无效候选={parser.invalid_candidates} '
                           f'未上传丢弃={stats["queueDropped"]} 待传批次={pending.qsize()}', flush=True)
                     last_report = now
         except KeyboardInterrupt:
@@ -154,10 +192,12 @@ def capture(args):
 
 
 def main():
-    p = argparse.ArgumentParser(description='动量轮 DCW1 串口接入/历史回放')
+    p = argparse.ArgumentParser(description='动量轮：旧固件电脑压缩 / DCW1 接入与回放')
     group = p.add_mutually_exclusive_group(required=True)
     group.add_argument('--port', help='串口，例如 COM4 或 /dev/ttyUSB0')
-    group.add_argument('--replay', help='回放 DCW1 二进制记录；不打开串口')
+    group.add_argument('--replay', help='回放二进制记录，须与 --protocol 一致；不打开串口')
+    p.add_argument('--protocol', choices=('legacy', 'dcw1'), default='dcw1',
+                   help='legacy=旧固件0x23由电脑压缩；dcw1=板端压缩/已有DCW1回放（兼容默认）')
     p.add_argument('--backend', default='http://127.0.0.1:8082')
     p.add_argument('--baud', type=int, default=230400)
     p.add_argument('--record', help='串口原始记录路径；文件已存在时拒绝覆盖')

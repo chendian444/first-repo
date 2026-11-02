@@ -1,54 +1,51 @@
-> v1.1 构建修订：详见 [Keil构建修订说明](Keil构建修订说明.md)。已显式启用 C99 和芯片宏，新增本机预检查工具；C9511E 仍需修复 MDK 产品/授权环境，完整 Keil Rebuild 尚未验证。
+# 动量轮旧固件接入：电脑压缩传输
 
-# 动量轮数据压缩传输集成
+当前方案：**保留旧固件和现有USART3接线，在电脑上校验、无损压缩，再上传到压缩传输系统。无需烧录AT32，也无需SWD下载器。**
 
-基于 AT32F403A 平衡立方体与 DataCompress_System，实现单片机无损压缩、USART3 传输、Python 串口上传、Java 校验解压和 Vue 遥测监控。
+```text
+AT32旧固件 → 66字节原始遥测 → USB-TTL / COM6
+  → Python电脑压缩 → HTTP压缩帧 → Java解压 → 网页曲线与CSV
+```
 
-2026-10-29 操作说明更新：已按 **CH340→COM5、STC 普通 USB-TTL→COM6、AT32 已焊在 PCB 上**重写[完整操作手册](完整压缩传输操作手册.md)，增加 CN3 接线、适配器自检、SWD 编译烧录、配置闭环及分阶段验收。只需择一 USB-TTL 采集；更新固件另需兼容的下载工具。新手册已更新至仓库，现有 ZIP 未重新打包，包中旧说明以仓库手册为准。
+## 下载与启动
 
-## 下载与使用
+- [电脑压缩完整运行包 v1.2](../deliverables/reaction-wheel-pc-legacy-v1.2.zip)：完整源码、新JAR、前端dist、网关运行依赖、采集器及示例。
+- [完整操作手册](完整压缩传输操作手册.md)：按当前旧固件、COM6情况操作。
+- [电脑压缩验证报告](电脑压缩验证报告.md)：本次测试与实机验收边界。
+- [运行包 SHA-256](../deliverables/reaction-wheel-pc-legacy-v1.2-SHA256SUMS.txt)。
 
-- [完整运行包（约 40 MB）](../deliverables/reaction-wheel-compression-v1.1-integration.zip)：包含完整源码、后端 JAR、前端 dist、网关依赖、串口工具及中文说明。点击文件页的下载按钮，或使用 [直接下载链接](https://github.com/chendian444/first-repo/raw/refs/heads/main/deliverables/reaction-wheel-compression-v1.1-integration.zip)。
-- [完整压缩传输操作手册](完整压缩传输操作手册.md)：电脑环境、历史回放、Keil 编译烧录、串口接线、实机传输、远程接收、数据保存与排错。
-- [集成说明](集成说明.md)：架构、通道、协议、接口及构建方法。
-- [验证报告](验证报告.md)：已完成的软件测试与硬件验收边界。
-- [压缩包 SHA-256](../deliverables/reaction-wheel-v1.1-SHA256SUMS.txt)。
-
-本目录提供可浏览的完整工程源码；预构建 JAR、前端 dist 和网关 node_modules 放在上方完整运行包中。直接使用请先下载并完整解压该运行包；从 Git 获取源码后也可按《集成说明》重新构建。
-
-## 运行包快速启动
-
-在解压后包含 firmware、DataCompress_System、serial-agent 的根目录打开 PowerShell：
+解压新包，进入包含start-legacy.ps1的根目录；环境为Java17、Node.js18.17+、Python3.9+。先停止旧版本服务，在窗口A执行：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\DataCompress_System\run.ps1
 ```
 
-浏览器访问 `http://localhost:8080/wheel`。另开终端进行历史回放：
+打开 `http://localhost:8080/wheel`。关闭XCOM串口，在窗口B执行：
 
 ```powershell
-python .\serial-agent\wheel_agent.py --replay .\examples\historical-gyro.dcw --backend http://127.0.0.1:8082 --pace 0.2
+powershell -ExecutionPolicy Bypass -File .\start-legacy.ps1 -Port COM6
 ```
 
-接入真实硬件并确认新固件运行后安装 pyserial，优先使用 CH340（COM5）：
+也可双击start-legacy.bat（默认COM6）。等效采集命令：
 
 ```powershell
 python -m pip install -r .\serial-agent\requirements.txt
-python .\serial-agent\wheel_agent.py --port COM5 --baud 230400 --enable-stream --backend http://127.0.0.1:8082
+python .\serial-agent\wheel_agent.py --protocol legacy --port COM6 --baud 230400 --enable-stream --backend http://127.0.0.1:8082
 ```
 
-若改用 STC 普通 USB-TTL（COM6），先停止 COM5 采集并断电换线，再执行：
+回放验证，无需硬件：
 
 ```powershell
-python .\serial-agent\wheel_agent.py --port COM6 --baud 230400 --enable-stream --backend http://127.0.0.1:8082
+python .\serial-agent\wheel_agent.py --protocol legacy --replay .\examples\legacy-gyro.uart --backend http://127.0.0.1:8082 --pace 0.2
 ```
 
-同版本原理图的 CN3：1=GND、5=板端 TX（接适配器 RX）、6=板端 RX（接适配器 TX）。使用 3.3 V TTL 信号，适配器 VCC 不接；CN3-2 是电源相关脚，不能当 3.3 V VTref。实物版本、1 脚和插头方向须先核对，详情见手册。
+## 使用边界
 
-依赖 Java 17、Node.js 18.17+、Python 3.9+。真实板卡需先使用 Keil/ARMCC 5.06 编译并烧录本包新源码。
+- 原始64字节位模式保留；压缩在电脑，串口带宽不减少。AUTO使用ZRLE，无收益回退RAW。
+- 旧通道4～14是预留，不作为姿态/轮速/电流/电压测量展示。
+- 页面周期控制电脑组批上传，不控制板端采样；旧协议无设备时间/序号，时间与编号均由电脑生成。
+- `.legacy`记录可重放；CSV只导出当前会话最近4000帧。Ctrl+C不控制电机停机。
+- 新包含本次后端和页面；旧运行ZIP不能直接替代。Git源码下载需自行构建运行产物。
+- 原板端DCW1方案仍可通过`--protocol dcw1`使用，见[历史手册](板端压缩操作手册-历史方案.md)及[集成说明](集成说明.md)。
 
-## 验证状态
-
-已通过 C/Python 协议无损往返、9 项 Java 测试、前端构建、模拟串口与 HTTP 端到端、浏览器页面验证。尚未完成真实 AT32 板上的 Keil 完整编译、烧录、控制时序和运行性能验收，包内没有已通过实机验收的新固件 BIN。
-
-原作者许可证、源码注释和 FOC 库保留，第三方源码与库的使用遵循各自许可。
+软件链路已验证，未连接用户真实动量轮；现场还需确认旧固件通道含义、COM6有效帧和持续采集稳定性。原作者许可证与FOC库保留。

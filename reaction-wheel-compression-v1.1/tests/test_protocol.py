@@ -9,7 +9,7 @@ import json
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'serial-agent'))
-from wheel_protocol import FrameParser, decode, config_command
+from wheel_protocol import FrameParser, decode, config_command, encode
 BUILD = ROOT / 'tests' / 'build'
 
 
@@ -40,6 +40,7 @@ class ProtocolTest(unittest.TestCase):
             fixtures.append(bytes(0 if rng.random() < .6 else rng.randrange(256) for _ in range(64)))
         for seq, raw in enumerate(fixtures):
             frame = self.encode(raw, seq=seq)
+            self.assertEqual(frame, encode(raw, seq, 123, source=0))
             restored = decode(frame)
             self.assertEqual(raw, restored['raw'])
             self.assertLessEqual(len(frame), 86)

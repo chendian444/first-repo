@@ -1,4 +1,4 @@
-"""DCW1 wire format shared by capture, replay and verification tools."""
+"""DCW1 transport and legacy 0x23 UART format; encoding runs on the PC."""
 import struct
 from binascii import crc_hqx
 
@@ -7,6 +7,59 @@ HEADER = struct.Struct('<4sBBHIIBHB')
 CHANNELS = ['gyro_x', 'gyro_y', 'gyro_z', 'angle_x', 'angle_y', 'angle_z',
             'wheel1_speed', 'wheel2_speed', 'wheel3_speed', 'wheel1_iq',
             'wheel2_iq', 'wheel3_iq', 'battery_v', 'protect_flag', 'rc_x', 'rc_y']
+
+
+def encode(raw, sequence, ticks_ms, mode='AUTO', period_ms=10, source=1):
+    """Preserve the 64 source bytes exactly. source=1 identifies legacy/PC encoding."""
+    if len(raw) != 64 or mode not in ('RAW', 'AUTO') or source not in (0, 1):
+        raise ValueError('invalid payload, mode or source')
+    if type(period_ms) is not int or not 10 <= period_ms <= 1000:
+        raise ValueError('period must be an integer in 10..1000')
+    packed = bytearray()
+    pos = 0
+    while pos < 64:
+        start = pos
+        zero = raw[pos] == 0
+        while pos < 64 and (raw[pos] == 0) == zero:
+            pos += 1
+        packed.append((128 if zero else 0) | (pos - start - 1))
+        if not zero:
+            packed.extend(raw[start:pos])
+    codec = int(mode == 'AUTO' and len(packed) < 64)
+    payload = bytes(packed) if codec else bytes(raw)
+    frame = HEADER.pack(MAGIC, codec, 16, len(payload), sequence & 0xffffffff,
+                        ticks_ms & 0xffffffff, int(mode == 'AUTO'), period_ms, source) + payload
+    return frame + struct.pack('<H', crc_hqx(frame, 0xffff))
+
+
+class LegacyParser:
+    """0x23 + 64 payload bytes + sum(payload)%256. No source time/sequence exists."""
+    def __init__(self):
+        self.buffer = bytearray()
+        self.invalid_candidates = 0
+        self.discarded_bytes = 0
+
+    def feed(self, data):
+        self.buffer.extend(data)
+        result = []
+        while self.buffer:
+            offset = self.buffer.find(b'\x23')
+            if offset < 0:
+                self.discarded_bytes += len(self.buffer)
+                self.buffer.clear()
+                break
+            self.discarded_bytes += offset
+            del self.buffer[:offset]
+            if len(self.buffer) < 66:
+                break
+            if sum(self.buffer[1:65]) & 255 != self.buffer[65]:
+                self.invalid_candidates += 1
+                self.discarded_bytes += 1
+                del self.buffer[0]
+                continue
+            result.append(bytes(self.buffer[1:65]))
+            del self.buffer[:66]
+        return result
 
 
 def config_command(mode, period_ms):
@@ -21,7 +74,7 @@ def decode(frame):
         raise ValueError('short frame')
     magic, codec, channels, size, seq, ticks, mode, period, flags = HEADER.unpack_from(frame)
     if (magic != MAGIC or codec not in (0, 1) or channels != 16 or not 1 <= size <= 64
-            or mode not in (0, 1) or not 10 <= period <= 1000 or flags != 0
+            or mode not in (0, 1) or not 10 <= period <= 1000 or flags not in (0, 1)
             or len(frame) != 22 + size or (codec == 0 and size != 64)):
         raise ValueError('invalid header')
     if crc_hqx(frame[:-2], 0xffff) != struct.unpack_from('<H', frame, len(frame)-2)[0]:
@@ -46,7 +99,7 @@ def decode(frame):
         if len(raw) != 64:
             raise ValueError('invalid restored length')
         raw = bytes(raw)
-    return {'sequence': seq, 'deviceMillis': ticks, 'codec': codec, 'mode': mode,
+    return {'sequence': seq, 'deviceMillis': ticks, 'codec': codec, 'mode': mode, 'source': flags,
             'periodMs': period, 'raw': raw, 'values': struct.unpack('<16f', raw)}
 
 
@@ -74,7 +127,7 @@ class FrameParser:
             size = struct.unpack_from('<H', self.buffer, 6)[0]
             codec, mode, period = self.buffer[4], self.buffer[16], struct.unpack_from('<H', self.buffer, 17)[0]
             if (not 1 <= size <= 64 or self.buffer[5] != 16 or codec > 1 or mode > 1
-                    or not 10 <= period <= 1000 or self.buffer[19] != 0 or (codec == 0 and size != 64)):
+                    or not 10 <= period <= 1000 or self.buffer[19] not in (0, 1) or (codec == 0 and size != 64)):
                 self.invalid_candidates += 1
                 self.discarded_bytes += 1
                 del self.buffer[0]

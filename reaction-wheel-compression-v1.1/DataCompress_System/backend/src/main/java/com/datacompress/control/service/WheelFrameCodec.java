@@ -8,7 +8,7 @@ import java.util.*;
 public final class WheelFrameCodec {
     private WheelFrameCodec() {}
     public record Frame(long sequence, long deviceMillis, int codec, int mode,
-                        int periodMs, int payloadBytes, int wireBytes, byte[] raw) {}
+                        int periodMs, int payloadBytes, int wireBytes, int source, byte[] raw) {}
 
     public static int crc16(byte[] bytes, int length) {
         return crc16(bytes, 0, length);
@@ -36,7 +36,7 @@ public final class WheelFrameCodec {
             int codec = bytes[p+4] & 255, n = u16(bytes, p+6), mode = bytes[p+16] & 255;
             int period = u16(bytes, p+17), end = p + 20 + n;
             if (codec > 1 || bytes[p+5] != 16 || n < 1 || n > 64 || mode > 1
-                    || period < 10 || period > 1000 || bytes[p+19] != 0
+                    || period < 10 || period > 1000 || (bytes[p+19] != 0 && bytes[p+19] != 1)
                     || end + 2 > bytes.length || (codec == 0 && n != 64))
                 throw new IllegalArgumentException("DCW1 帧参数错误");
             if (crc16(bytes, p, 20+n) != u16(bytes, end))
@@ -58,7 +58,7 @@ public final class WheelFrameCodec {
             }
             ByteBuffer view = ByteBuffer.wrap(bytes, p+8, 8).order(ByteOrder.LITTLE_ENDIAN);
             frames.add(new Frame(Integer.toUnsignedLong(view.getInt()),
-                    Integer.toUnsignedLong(view.getInt()), codec, mode, period, n, 22+n, raw));
+                    Integer.toUnsignedLong(view.getInt()), codec, mode, period, n, 22+n, bytes[p+19], raw));
             p = end + 2;
         }
         return frames;
