@@ -13,6 +13,12 @@ let chartResizeTimer = null;
 const $ = id => document.getElementById(id);
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const identity = await fetch('/api/software/identity').then(response => {
+    if (!response.ok) throw new Error('无法读取系统名称');
+    return response.json();
+  });
+  document.title = identity.name;
+  $('softwareName').textContent = identity.name;
   bindNavigation();
   bindForms();
   setInterval(() => $('clock').textContent = new Date().toLocaleTimeString(), 1000);

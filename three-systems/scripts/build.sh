@@ -13,4 +13,4 @@ else
   "${MAVEN_EXECUTABLE:-mvn}" -B package
 fi
 mkdir -p "$ROOT/shared-runtime"
-cp target/data-compress-control-system-v5-5.0.0.jar "$ROOT/shared-runtime/backend.jar"
+cp target/industrial-network-systems-backend-5.0.0.jar "$ROOT/shared-runtime/backend.jar"

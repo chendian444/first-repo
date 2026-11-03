@@ -1,10 +1,12 @@
-# 三个独立的数据压缩与网络传输软件
+# 工业网络三个独立系统
+
+2026-11-03：已统一源代码、工程描述、主界面及后端界面中的软件名称。[下载完整运行与源码包](../deliverables/three-systems-renamed-20261103.zip)，[下载纯源码包](../deliverables/three-systems-source-20261103.zip)。
 
 2026-10-29 最新材料：按用户新上传的监测说明书和采集表统一版式，重写另外两套系统的说明书与采集表，并分别生成三个系统的源码Word和单系统源码工程。见 [本次Word材料](copyright-materials-20261029/README.md)，或 [下载全部Word](../deliverables/three-systems-word-20261029.zip)。
 
 2026-10-28：三个系统已按指定软著名称更新主页面、接收监控页及浏览器标题，并重新构建运行界面。各系统的操作说明书、登记信息采集表、源码Word、完整工程源码及核验记录见 [软著材料](copyright-materials/README.md)；登记主体和日期等按用户回复保留“待补充”，版本号按模板默认暂填V1.0。
 
-从上传的原“数据压缩控制传输系统”拆分，沿用原 Vue 界面、Java 压缩传输业务、Node 网关与接收服务。三个软件共用一份源码和一个后端 JAR，分别运行独立进程、端口和数据目录。
+从上传的既有公共实现拆分，沿用原 Vue 界面、Java 压缩传输业务、Node 网关与接收服务。三个软件共用一份源码和一个后端 JAR，分别运行独立进程、端口和数据目录。
 
 | 软件 | 主页面内容 | 界面 / Java 后端 / 接收端端口 |
 | --- | --- | --- |
@@ -113,7 +115,7 @@ cd ../backend
 mvn -B package
 cd ..
 if not exist shared-runtime mkdir shared-runtime
-copy backend\target\data-compress-control-system-v5-5.0.0.jar shared-runtime\backend.jar
+copy backend\target\industrial-network-systems-backend-5.0.0.jar shared-runtime\backend.jar
 ```
 
 原依赖锁文件指向腾讯镜像，当前云环境无法访问该镜像；安装器仅在临时目录把 URL 映射到官方 npm 源，保持原版本和 integrity，使用 `npm ci`，不改写源码锁文件，不关闭 TLS 或校验。

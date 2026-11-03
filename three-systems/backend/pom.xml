@@ -13,10 +13,10 @@
     </parent>
 
     <groupId>com.datacompress</groupId>
-    <artifactId>data-compress-control-system-v5</artifactId>
+    <artifactId>industrial-network-systems-backend</artifactId>
     <version>5.0.0</version>
-    <name>Data Compress Control System V5</name>
-    <description>Multimodal monitoring data dynamic compression and transmission control</description>
+    <name>工业网络三系统共用后端</name>
+    <description>工业网络传输状态实时感知与监测系统；运行监测数据自适应压缩传输控制决策与优化系统；工业网络数据传输智能诊断与预测系统</description>
 
     <properties>
         <java.version>17</java.version>

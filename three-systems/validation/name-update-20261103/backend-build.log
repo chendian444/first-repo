@@ -1,0 +1,72 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] --------< com.datacompress:industrial-network-systems-backend >---------
+[INFO] Building 工业网络三系统共用后端 5.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ industrial-network-systems-backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 4 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.1:compile (default-compile) @ industrial-network-systems-backend ---
+[INFO] Recompiling the module because of changed source code.
+[INFO] Compiling 59 source files with javac [debug parameters release 17] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ industrial-network-systems-backend ---
+[INFO] skip non existing resourceDirectory /workspace/first-repo/three-systems/backend/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ industrial-network-systems-backend ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 17] to target/test-classes
+[INFO] 
+[INFO] --- surefire:3.5.4:test (default-test) @ industrial-network-systems-backend ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running com.datacompress.control.service.PackagePayloadServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in com.datacompress.control.service.PackagePayloadServiceTest
+[INFO] Running com.datacompress.control.DataCompressControlApplicationTests
+08:47:50.057 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [com.datacompress.control.DataCompressControlApplicationTests]: DataCompressControlApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+08:47:50.125 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration com.datacompress.control.DataCompressControlApplication for test class com.datacompress.control.DataCompressControlApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.11)
+
+2026-11-03T08:47:50.325Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] .d.c.DataCompressControlApplicationTests : Starting DataCompressControlApplicationTests using Java 17.0.16 with PID 1339 (started by agent in /workspace/first-repo/three-systems/backend)
+2026-11-03T08:47:50.326Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] .d.c.DataCompressControlApplicationTests : No active profile set, falling back to 1 default profile: "default"
+2026-11-03T08:47:51.029Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] c.d.c.service.CompactLstmRatePredictor   : Loaded compact LSTM model: sequenceLength=24, horizon=12, hiddenSize=8
+2026-11-03T08:47:51.033Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] c.d.c.s.SharedCompressionHistoryService  : Loaded 0 shared compression history task(s) from /workspace/first-repo/three-systems/backend/data/history
+2026-11-03T08:47:51.124Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-11-03T08:47:51.322Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 3 endpoints beneath base path '/actuator'
+2026-11-03T08:47:51.347Z  INFO 1339 --- [å·¥ä¸ç½ç»ä¼ è¾ç¶æå®æ¶æç¥ä¸çæµç³»ç»] [           main] .d.c.DataCompressControlApplicationTests : Started DataCompressControlApplicationTests in 1.17 seconds (process running for 1.71)
+OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.738 s -- in com.datacompress.control.DataCompressControlApplicationTests
+[INFO] Running com.datacompress.control.algorithm.CoreCompressionTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.124 s -- in com.datacompress.control.algorithm.CoreCompressionTest
+[INFO] 
+[INFO] Results:
+[INFO] 
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ industrial-network-systems-backend ---
+[INFO] Building jar: /workspace/first-repo/three-systems/backend/target/industrial-network-systems-backend-5.0.0.jar
+[INFO] 
+[INFO] --- spring-boot:3.5.11:repackage (repackage) @ industrial-network-systems-backend ---
+[INFO] Replacing main artifact /workspace/first-repo/three-systems/backend/target/industrial-network-systems-backend-5.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to /workspace/first-repo/three-systems/backend/target/industrial-network-systems-backend-5.0.0.jar.original
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.554 s
+[INFO] Finished at: 2026-11-03T08:47:52Z
+[INFO] ------------------------------------------------------------------------

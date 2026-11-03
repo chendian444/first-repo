@@ -5,7 +5,7 @@ import { spawn } from 'node:child_process'
 import { softwareConfig } from './software-config.mjs'
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const kind = process.argv[2]
-const { port, backendPort, receiverPort } = softwareConfig(kind)
+const { name, port, backendPort, receiverPort } = softwareConfig(kind)
 const runtime = path.join(root, 'runtime', kind)
 mkdirSync(runtime, { recursive: true })
 const pidFile = path.join(runtime, 'processes.json')
@@ -28,7 +28,7 @@ function launch(executable, args, cwd, env, logName) {
   return child
 }
 const java = process.env.JAVA_HOME ? path.join(process.env.JAVA_HOME, 'bin', process.platform === 'win32' ? 'java.exe' : 'java') : 'java'
-launch(java, ['-jar', path.join(root, 'shared-runtime/backend.jar'), `--server.port=${backendPort}`, `--app.history.dir=${path.join(runtime, 'history')}`], runtime, {}, 'backend.log')
+launch(java, ['-jar', path.join(root, 'shared-runtime/backend.jar'), `--server.port=${backendPort}`, `--app.history.dir=${path.join(runtime, 'history')}`], runtime, { SOFTWARE_NAME: name }, 'backend.log')
 async function ready(url, timeout = 90000) {
   const deadline = Date.now() + timeout
   while (Date.now() < deadline) {
