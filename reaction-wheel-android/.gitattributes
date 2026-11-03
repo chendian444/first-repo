@@ -1,0 +1,2 @@
+# Preserve upstream vendored source byte-for-byte, including CRLF and whitespace.
+app/src/main/java/com/hoho/** -whitespace
