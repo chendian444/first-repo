@@ -16,6 +16,13 @@ public class WheelTelemetryService {
             "reserved_04", "reserved_05", "reserved_06", "reserved_07", "reserved_08",
             "reserved_09", "reserved_10", "reserved_11", "reserved_12", "reserved_13",
             "reserved_14", "rc_x", "rc_y");
+    public static final List<String> FULL_CHANNELS = List.of("gyro_x", "gyro_y", "gyro_z", "angle_x", "angle_y",
+            "wheel1_speed", "wheel2_speed", "wheel3_speed", "encoder1_raw", "encoder2_raw", "encoder3_raw",
+            "wheel1_id", "wheel2_id", "wheel3_id", "wheel1_iq", "wheel2_iq", "wheel3_iq",
+            "battery_v", "battery_filtered_v", "rc_x", "rc_y", "rc_z", "protect_flag", "auto_mode", "manual_mode", "calibrated");
+    private List<String> channelNames() {
+        return activeSource == 2 ? FULL_CHANNELS : activeSource == 1 ? LEGACY_CHANNELS : CHANNELS;
+    }
     public record Config(String mode, Integer periodMs) {}
     public record Sample(long sequence, long deviceMillis, Instant receivedAt,
                          String codec, String mode, int periodMs, int payloadBytes,
@@ -26,7 +33,7 @@ public class WheelTelemetryService {
     private Config desired = new Config("AUTO", 10);
     private long accepted, compressed, wireBytes, payloadBytes, gaps, duplicates, resets, rejected;
     private long lastSeq = -1, lastTicks;
-    private long sourceWireBytes;
+    private long sourceWireBytes, rawPayloadBytes;
     private int activeSource = -1;
     private String session = "";
     private Sample latest;
@@ -82,12 +89,13 @@ public class WheelTelemetryService {
             latest = new Sample(frame.sequence(), frame.deviceMillis(), Instant.now(),
                     frame.codec() == 0 ? "RAW" : "ZRLE", frame.mode() == 0 ? "RAW" : "AUTO",
                     frame.periodMs(), frame.payloadBytes(), Collections.unmodifiableList(values),
-                    Base64.getEncoder().encodeToString(frame.raw()), frame.source() == 1 ? "HOST" : "DEVICE");
+                    Base64.getEncoder().encodeToString(frame.raw()), frame.source() != 0 ? "HOST" : "DEVICE");
             history.addLast(latest);
             if (history.size() > 4000) history.removeFirst();
             accepted++; count++; if (frame.codec() == 1) compressed++;
             wireBytes += frame.wireBytes(); payloadBytes += frame.payloadBytes();
-            sourceWireBytes += frame.source() == 1 ? 66 : 86;
+            sourceWireBytes += frame.source() == 2 ? 122 : frame.source() == 1 ? 66 : 86;
+            rawPayloadBytes += frame.raw().length;
             sources.save(new DataSourceInfo("reaction-wheel-01", "动量轮 AT32F403A", "SENSOR",
                     "serial://USART3@230400", "AT32-WHEEL-01", "动量轮遥测", true,
                     latest.receivedAt(), wireBytes, frame.periodMs()));
@@ -115,15 +123,16 @@ public class WheelTelemetryService {
         out.put("configApplied", online && !session.startsWith("replay-") && latest.mode().equals(desired.mode())
                 && latest.periodMs() == desired.periodMs());
         out.put("compressionLocation", latest == null ? "UNKNOWN" : latest.compressionLocation());
-        out.put("timeSource", activeSource == 1 ? "HOST_RECEIPT" : "DEVICE");
-        out.put("sequenceSource", activeSource == 1 ? "HOST_VALID_FRAME" : "DEVICE_SLOT");
+        out.put("timeSource", activeSource < 0 ? "UNKNOWN" : activeSource == 1 ? "HOST_RECEIPT" : "DEVICE");
+        out.put("sequenceSource", activeSource < 0 ? "UNKNOWN" : activeSource == 1 ? "HOST_VALID_FRAME" : "DEVICE_SLOT");
         out.put("sourceWireBytes", sourceWireBytes);
         out.put("transportSavingPercent", sourceWireBytes == 0 ? 0 : 100.0*(1-wireBytes/(double)sourceWireBytes));
-        out.put("channels", activeSource == 1 ? LEGACY_CHANNELS : CHANNELS); out.put("acceptedFrames", accepted);
+        out.put("sourceProtocol", activeSource < 0 ? "UNKNOWN" : activeSource == 2 ? "RAW26_RWT1" : activeSource == 1 ? "LEGACY_0X23" : "DEVICE_DCW1");
+        out.put("channels", channelNames()); out.put("acceptedFrames", accepted);
         out.put("compressedFrames", compressed); out.put("wireBytes", wireBytes);
-        out.put("payloadBytes", payloadBytes); out.put("rawPayloadBytes", accepted * 64);
-        out.put("payloadSavingPercent", accepted == 0 ? 0 : 100.0*(1-payloadBytes/(accepted*64.0)));
-        out.put("framedSavingPercent", accepted == 0 ? 0 : 100.0*(1-wireBytes/(accepted*86.0)));
+        out.put("payloadBytes", payloadBytes); out.put("rawPayloadBytes", rawPayloadBytes);
+        out.put("payloadSavingPercent", accepted == 0 ? 0 : 100.0*(1-payloadBytes/(double)rawPayloadBytes));
+        out.put("framedSavingPercent", accepted == 0 ? 0 : 100.0*(1-wireBytes/(rawPayloadBytes+accepted*22.0)));
         out.put("sequenceGaps", gaps); out.put("duplicateFrames", duplicates);
         out.put("deviceResets", resets); out.put("rejectedBatches", rejected);
         out.put("historyLimit", 4000);
@@ -136,8 +145,9 @@ public class WheelTelemetryService {
     public synchronized String csv() {
         StringBuilder s = new StringBuilder(activeSource == 1
                 ? "host_sequence,host_elapsed_ms,received_at,codec,mode,batch_period_ms,"
+                : activeSource == 2 ? "sequence,device_ms,received_at,codec,mode,batch_period_ms,"
                 : "sequence,device_ms,received_at,codec,mode,period_ms,")
-                .append(String.join(",", activeSource == 1 ? LEGACY_CHANNELS : CHANNELS)).append('\n');
+                .append(String.join(",", channelNames())).append('\n');
         for (Sample f : history) {
             s.append(f.sequence()).append(',').append(f.deviceMillis()).append(',')
                     .append(f.receivedAt()).append(',').append(f.codec()).append(',')

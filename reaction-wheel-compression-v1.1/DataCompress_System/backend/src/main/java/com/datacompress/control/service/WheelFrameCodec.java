@@ -35,26 +35,27 @@ public final class WheelFrameCodec {
                 throw new IllegalArgumentException("DCW1 帧头错误或帧不完整");
             int codec = bytes[p+4] & 255, n = u16(bytes, p+6), mode = bytes[p+16] & 255;
             int period = u16(bytes, p+17), end = p + 20 + n;
-            if (codec > 1 || bytes[p+5] != 16 || n < 1 || n > 64 || mode > 1
-                    || period < 10 || period > 1000 || (bytes[p+19] != 0 && bytes[p+19] != 1)
-                    || end + 2 > bytes.length || (codec == 0 && n != 64))
+            int source = bytes[p+19] & 255, rawSize = source == 2 ? 104 : 64;
+            if (codec > 1 || (bytes[p+5] & 255) != rawSize/4 || n < 1 || n > rawSize || mode > 1
+                    || period < 10 || period > 1000 || source > 2
+                    || end + 2 > bytes.length || (codec == 0 && n != rawSize))
                 throw new IllegalArgumentException("DCW1 帧参数错误");
             if (crc16(bytes, p, 20+n) != u16(bytes, end))
                 throw new IllegalArgumentException("DCW1 CRC 校验失败");
-            byte[] raw = new byte[64];
-            if (codec == 0) System.arraycopy(bytes, p+20, raw, 0, 64);
+            byte[] raw = new byte[rawSize];
+            if (codec == 0) System.arraycopy(bytes, p+20, raw, 0, rawSize);
             else {
                 int i = p+20, out = 0;
                 while (i < end) {
                     int token = bytes[i++] & 255, count = (token & 127) + 1;
-                    if (out + count > 64 || ((token & 128) == 0 && i + count > end))
+                    if (out + count > rawSize || ((token & 128) == 0 && i + count > end))
                         throw new IllegalArgumentException("ZRLE 长度错误");
                     if ((token & 128) == 0) {
                         System.arraycopy(bytes, i, raw, out, count); i += count;
                     }
                     out += count;
                 }
-                if (out != 64) throw new IllegalArgumentException("ZRLE 恢复长度必须为 64");
+                if (out != rawSize) throw new IllegalArgumentException("ZRLE 恢复长度与通道数量不符");
             }
             ByteBuffer view = ByteBuffer.wrap(bytes, p+8, 8).order(ByteOrder.LITTLE_ENDIAN);
             frames.add(new Frame(Integer.toUnsignedLong(view.getInt()),

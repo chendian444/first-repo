@@ -1,51 +1,35 @@
-# 动量轮旧固件接入：电脑压缩传输
+# 动量轮完整串口遥测与电脑压缩传输
 
-当前方案：**保留旧固件和现有USART3接线，在电脑上校验、无损压缩，再上传到压缩传输系统。无需烧录AT32，也无需SWD下载器。**
+当前任务保留现有无线控制，通过USART3将动量轮遥测导入压缩传输系统；压缩在电脑执行，不需要手机App。
 
-```text
-AT32旧固件 → 66字节原始遥测 → USB-TTL / COM6
-  → Python电脑压缩 → HTTP压缩帧 → Java解压 → 网页曲线与CSV
-```
+**新增完整26通道**：角速度XYZ、姿态XY、三轮速度、三路编码器、三路Id和三路Iq、电池原始/滤波电压、遥控XYZ、保护及自动/手动/校准状态。页面支持全部字段、9类分组曲线及完整CSV导出。
 
-## 下载与启动
+重要：你上传的旧Debug.c把4～14通道填零，电脑不能凭空还原电流、电压等。完整26通道需一次性更新“仅扩展遥测”的AT32程序；继续用旧固件时仍可使用legacy模式接入原有数据。
 
-- [电脑压缩完整运行包 v1.2](../deliverables/reaction-wheel-pc-legacy-v1.2.zip)：完整源码、新JAR、前端dist、网关运行依赖、采集器及示例。
-- [完整操作手册](完整压缩传输操作手册.md)：按当前旧固件、COM6情况操作。
-- [电脑压缩验证报告](电脑压缩验证报告.md)：本次测试与实机验收边界。
-- [运行包 SHA-256](../deliverables/reaction-wheel-pc-legacy-v1.2-SHA256SUMS.txt)。
+- **[完整26通道运行包 v1.3](../deliverables/reaction-wheel-telemetry26-pc-v1.3.zip)**：新JAR、页面、代理、26通道固件完整源码、原始演示数据。
+- [完整接线、固件准备、采集与导出手册](完整压缩传输操作手册.md)
+- [26通道软件验证报告](26通道验证报告.md)
+- [SHA-256](../deliverables/reaction-wheel-telemetry26-pc-v1.3-SHA256SUMS.txt)
+- [不更新固件的旧协议手册](旧固件电脑压缩操作手册.md)
 
-解压新包，进入包含start-legacy.ps1的根目录；环境为Java17、Node.js18.17+、Python3.9+。先停止旧版本服务，在窗口A执行：
+新包解压后，在根目录窗口A启动上位机：
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\DataCompress_System\run.ps1
 ```
 
-打开 `http://localhost:8080/wheel`。关闭XCOM串口，在窗口B执行：
+打开 `http://localhost:8080/wheel`。若板端已下载并校验raw26固件，关闭XCOM，在窗口B启动：
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File .\start-legacy.ps1 -Port COM6
+powershell -ExecutionPolicy Bypass -File .\start-raw26.ps1 -Port COM6
 ```
 
-也可双击start-legacy.bat（默认COM6）。等效采集命令：
+还未更新板端时，可先使用1000帧合成演示验证全部字段，不接硬件：
 
 ```powershell
-python -m pip install -r .\serial-agent\requirements.txt
-python .\serial-agent\wheel_agent.py --protocol legacy --port COM6 --baud 230400 --enable-stream --backend http://127.0.0.1:8082
+python .\serial-agent\wheel_agent.py --protocol raw26 --replay .\examples\full-telemetry26.rwt --backend http://127.0.0.1:8082 --pace 0.2
 ```
 
-回放验证，无需硬件：
+固件只扩展原始输出并增加CRC，不承担压缩；完整工程在运行包的firmware-raw26目录。现用无线控制源码若与附件不同，应从现用工程通过tools/prepare_raw26_firmware.py生成新副本，仅合并指定五处遥测改动，不替换现有控制模块。
 
-```powershell
-python .\serial-agent\wheel_agent.py --protocol legacy --replay .\examples\legacy-gyro.uart --backend http://127.0.0.1:8082 --pace 0.2
-```
-
-## 使用边界
-
-- 原始64字节位模式保留；压缩在电脑，串口带宽不减少。AUTO使用ZRLE，无收益回退RAW。
-- 旧通道4～14是预留，不作为姿态/轮速/电流/电压测量展示。
-- 页面周期控制电脑组批上传，不控制板端采样；旧协议无设备时间/序号，时间与编号均由电脑生成。
-- `.legacy`记录可重放；CSV只导出当前会话最近4000帧。Ctrl+C不控制电机停机。
-- 新包含本次后端和页面；旧运行ZIP不能直接替代。Git源码下载需自行构建运行产物。
-- 原板端DCW1方案仍可通过`--protocol dcw1`使用，见[历史手册](板端压缩操作手册-历史方案.md)及[集成说明](集成说明.md)。
-
-软件链路已验证，未连接用户真实动量轮；现场还需确认旧固件通道含义、COM6有效帧和持续采集稳定性。原作者许可证与FOC库保留。
+本次已通过C/Python、Java、模拟串口/HTTP和页面验证，未进行完整Keil构建、烧录或真实动量轮运行验收。原许可证和FOC库保留。

@@ -1,0 +1,1 @@
+Synthetic 26-channel demonstration, 1000 frames. Not a hardware measurement. Device times/values are generated for software testing.

@@ -102,9 +102,35 @@ class WheelTelemetryTest {
         byte[] mixed = join(device, host);
         assertThrows(IllegalArgumentException.class, () -> s.ingest(mixed, "mixed", "serial-test"));
         assertEquals(0L, s.status().get("acceptedFrames"));
-        byte[] unknown = host.clone(); unknown[19] = 2;
+        byte[] unknown = host.clone(); unknown[19] = 3;
         unknown = sequence(unknown, 2, 20);
         byte[] invalid = unknown;
         assertThrows(IllegalArgumentException.class, () -> WheelFrameCodec.decodeBatch(invalid));
     }
+    @Test void full26VectorsDecodeBitExactlyAndExportAllChannels() throws Exception {
+        var service = new WheelTelemetryService(new DataSourceService());
+        service.configure(new WheelTelemetryService.Config("AUTO", 100));
+        try (var input = getClass().getResourceAsStream("/wheel-full-vectors.json")) {
+            var vectors = new ObjectMapper().readTree(input);
+            int i=0;
+            for (var v : vectors) {
+                byte[] frame=HexFormat.of().parseHex(v.get("frameHex").asText());
+                byte[] raw=HexFormat.of().parseHex(v.get("rawHex").asText());
+                assertArrayEquals(raw, WheelFrameCodec.decodeBatch(frame).get(0).raw());
+                service.ingest(frame,"full"+i++,"serial-full26");
+            }
+            assertEquals(vectors.size()*104L,service.status().get("rawPayloadBytes"));
+            assertEquals(vectors.size()*122L,service.status().get("sourceWireBytes"));
+        }
+        assertEquals("HOST",service.status().get("compressionLocation"));
+        assertEquals("DEVICE",service.status().get("timeSource"));
+        assertEquals("RAW26_RWT1",service.status().get("sourceProtocol"));
+        assertEquals(true,service.status().get("configApplied"));
+        assertEquals(26,((List<?>)service.status().get("channels")).size());
+        assertEquals(26,service.history(1).get(0).values().size());
+        assertTrue(service.csv().startsWith("sequence,device_ms,received_at,codec,mode,batch_period_ms,"));
+        assertTrue(service.csv().contains("wheel1_id,wheel2_id,wheel3_id"));
+        assertEquals(32,service.csv().split("\n")[0].split(",").length);
+    }
+
 }

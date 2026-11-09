@@ -1,0 +1,10 @@
+test_batch_period_does_not_drop_samples (__main__.LegacyTest.test_batch_period_does_not_drop_samples) ... ok
+test_compression_fallback_modes_and_transport_parser (__main__.LegacyTest.test_compression_fallback_modes_and_transport_parser) ... ok
+test_fragmentation_echo_corruption_and_resync (__main__.LegacyTest.test_fragmentation_echo_corruption_and_resync) ... ok
+test_long_garbage_stays_bounded_and_incomplete_tail_waits (__main__.LegacyTest.test_long_garbage_stays_bounded_and_incomplete_tail_waits) ... ok
+test_random_and_special_bit_patterns_are_preserved (__main__.LegacyTest.test_random_and_special_bit_patterns_are_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.218s
+
+OK

@@ -1,0 +1,10 @@
+{
+  "raw26PTY": "PASS",
+  "all26FieldsExact": "PASS",
+  "raw104BytesExact": "PASS",
+  "deviceClockAndSequence": "PASS",
+  "hostConfigOnly": "PASS",
+  "csvColumns": 32,
+  "replayFrames": 20,
+  "hardwareTested": false
+}

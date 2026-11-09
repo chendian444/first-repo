@@ -1,0 +1,12 @@
+In file included from /workspace/work/raw26/firmware-raw26/cmsis/device_support/at32f403a_407.h:315,
+                 from /workspace/work/raw26/firmware-raw26/USER/at32f403a_407_clock.h:34,
+                 from /workspace/work/raw26/firmware-raw26/UserFile/app.h:4,
+                 from /workspace/work/raw26/firmware-raw26/UserFile/Debug.c:2:
+/workspace/work/raw26/firmware-raw26/cmsis/core_support/core_cm4.h: In function ‘__NVIC_SetVector’:
+/workspace/work/raw26/firmware-raw26/cmsis/core_support/core_cm4.h:1913:23: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+ 1913 |   uint32_t *vectors = (uint32_t *)SCB->VTOR;
+      |                       ^
+/workspace/work/raw26/firmware-raw26/cmsis/core_support/core_cm4.h: In function ‘__NVIC_GetVector’:
+/workspace/work/raw26/firmware-raw26/cmsis/core_support/core_cm4.h:1929:23: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
+ 1929 |   uint32_t *vectors = (uint32_t *)SCB->VTOR;
+      |                       ^

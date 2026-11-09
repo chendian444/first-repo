@@ -1,0 +1,16 @@
+历史回放完成: 20 帧; 无效候选=0; 丢弃字节=0; 未完成尾部=0 字节
+串口 /dev/pts/0@230400；原始记录 /tmp/raw26-e2e-mi45m1p6/capture.rwt
+电脑压缩：周期控制上传组批；不改变板端采样。
+
+采集停止；未传数据可使用 --replay 从原始记录恢复。
+
+{
+  "raw26PTY": "PASS",
+  "all26FieldsExact": "PASS",
+  "raw104BytesExact": "PASS",
+  "deviceClockAndSequence": "PASS",
+  "hostConfigOnly": "PASS",
+  "csvColumns": 32,
+  "replayFrames": 20,
+  "hardwareTested": false
+}

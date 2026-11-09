@@ -8,6 +8,7 @@ interface Sample {
   mode: string; periodMs: number; values: (number | null)[]
 }
 interface Status {
+  sourceProtocol: string; timeSource: string
   compressionLocation: 'HOST' | 'DEVICE' | 'UNKNOWN'; transportSavingPercent: number
   online: boolean; inputMode: string; configApplied: boolean; config: Config; latest: Sample | null
   channels: string[]; acceptedFrames: number; compressedFrames: number
@@ -17,6 +18,10 @@ interface Status {
 }
 const status = ref<Status | null>(null)
 const samples = ref<Sample[]>([])
+const legacy = computed(() => status.value?.sourceProtocol === 'LEGACY_0X23')
+const full = computed(() => status.value?.sourceProtocol === 'RAW26_RWT1')
+const hostTime = computed(() => status.value?.timeSource === 'HOST_RECEIPT')
+const group = ref('gyro')
 const hostCompression = computed(() => status.value?.compressionLocation !== 'DEVICE')
 const mode = ref<Config['mode']>('AUTO')
 const period = ref(10)
@@ -63,10 +68,24 @@ async function save() {
   finally { saving.value = false }
 }
 const labels = computed(() => samples.value.map(s => `${(s.deviceMillis / 1000).toFixed(2)}s`))
-const series = computed(() => ['X', 'Y', 'Z'].map((name, i) => ({
-  name: `陀螺 ${name}`, color: ['#1769ff', '#19a78c', '#ed8c36'][i]!,
-  data: samples.value.map(s => s.values[i] ?? NaN)
-})))
+const plotGroups: Record<string, {label: string; keys: string[]}> = {
+  gyro: {label:'角速度（°/s）',keys:['gyro_x','gyro_y','gyro_z']},
+  angle: {label:'姿态角（°）',keys:['angle_x','angle_y']},
+  speed: {label:'三轮角速度（°/s，RPM=数值/6）',keys:['wheel1_speed','wheel2_speed','wheel3_speed']},
+  encoder: {label:'编码器原始值',keys:['encoder1_raw','encoder2_raw','encoder3_raw']},
+  id: {label:'三路 FOC Id（原标定单位）',keys:['wheel1_id','wheel2_id','wheel3_id']},
+  iq: {label:'三路 FOC Iq（原标定单位）',keys:['wheel1_iq','wheel2_iq','wheel3_iq']},
+  voltage: {label:'电池电压（V）',keys:['battery_v','battery_filtered_v']},
+  remote: {label:'遥控输入（原单位）',keys:['rc_x','rc_y','rc_z']},
+  state: {label:'状态与模式值',keys:['protect_flag','auto_mode','manual_mode','calibrated']}
+}
+const plot = computed(() => plotGroups[group.value] ?? plotGroups.gyro!)
+const series = computed(() => plot.value.keys.flatMap((name, i) => {
+  const index = status.value?.channels.indexOf(name) ?? -1
+  if (index < 0) return []
+  return [{name, color:['#1769ff','#19a78c','#ed8c36','#9859d2'][i%4]!,
+    data:samples.value.map(s=>s.values[index] ?? NaN)}]
+}))
 function number(value: number | null | undefined) {
   return value == null || !Number.isFinite(value) ? '—' : value.toFixed(4)
 }
@@ -77,7 +96,7 @@ onBeforeUnmount(() => { stopped = true; if (timer) clearTimeout(timer) })
 <template>
   <section class="wheel-panel">
     <header class="wheel-heading">
-      <div><h1>动量轮遥测</h1><p>{{ hostCompression ? '旧固件 → 原始串口遥测 → 电脑压缩 → 接收端解压' : 'AT32F403A → 串口压缩传输 → 上位机解压' }}</p></div>
+      <div><h1>动量轮遥测</h1><p>{{ hostCompression ? full ? '26通道原始遥测 → 电脑压缩 → 接收端解压' : '旧协议原始串口 → 电脑压缩 → 接收端解压' : 'AT32F403A → 串口压缩传输 → 上位机解压' }}</p></div>
       <strong :class="['wheel-state', { online: status?.online && !error }]">
         {{ error ? '连接异常' : status?.online ? status.inputMode === 'REPLAY' ? '历史回放' : '正在接收' : '等待设备' }}
       </strong>
@@ -87,10 +106,10 @@ onBeforeUnmount(() => { stopped = true; if (timer) clearTimeout(timer) })
       <article><span>累计有效遥测帧</span><b>{{ status?.acceptedFrames ?? 0 }}</b></article>
       <article><span>载荷节省</span><b>{{ (status?.payloadSavingPercent ?? 0).toFixed(1) }}%</b></article>
       <article><span>同协议整帧节省</span><b>{{ (status?.framedSavingPercent ?? 0).toFixed(1) }}%</b></article>
-      <article><span>{{ hostCompression ? '电脑编号缺口' : '序号缺口' }}</span><b>{{ status?.sequenceGaps ?? 0 }}</b></article>
+      <article><span>{{ hostTime ? '电脑编号缺口' : '序号缺口' }}</span><b>{{ status?.sequenceGaps ?? 0 }}</b></article>
     </div>
-    <p class="wheel-muted" v-if="hostCompression">压缩在采集电脑执行；串口仍传原始数据。旧协议无设备序号/时间，不能据电脑编号计算串口丢帧率。旧协议求和校验的检错能力弱于 CRC。</p>
-    <p class="wheel-muted">网络帧体相对输入帧节省 {{ (status?.transportSavingPercent ?? 0).toFixed(1) }}%（电脑旧协议输入按每帧66字节；不含 HTTP/TCP 开销，负值表示增加）。上方同协议节省以86字节DCW1 RAW为基准。</p>
+    <p class="wheel-muted" v-if="hostCompression">压缩在采集电脑执行，串口传原始数据；无线控制与串口遥测分别工作。{{ legacy ? '当前旧协议无设备序号/时间，不能判断串口丢帧，4～14通道是预留。' : full ? '26通道带设备时间、序号与CRC；缺口可能来自设备忙、调度或链路错误。' : '尚未接入，请先选择与固件一致的采集协议。' }}</p>
+    <p class="wheel-muted">网络帧体相对输入帧节省 {{ (status?.transportSavingPercent ?? 0).toFixed(1) }}%（按来源的原始帧体比较，不含HTTP/TCP开销，负值表示增加）。26通道串口帧122字节，同协议RAW帧126字节；旧协议分别为66和86字节。</p>
     <div class="wheel-card">
       <h2>压缩与传输配置</h2>
       <form class="wheel-form" @submit.prevent="save">
@@ -103,20 +122,21 @@ onBeforeUnmount(() => { stopped = true; if (timer) clearTimeout(timer) })
       <p class="wheel-muted">{{ hostCompression ? 'AUTO 在电脑端无损压缩，无收益时直传。周期是上传组批等待上限目标，满20帧可提前上传；不丢弃有效样本，不改变板端采样。' : '配置通过采集程序下发设备；AUTO 无收益时直传，仅控制遥测方式和频率。' }}</p>
     </div>
     <div class="wheel-card">
-      <h2>角速度（°/s）</h2>
-      <LineChart v-if="samples.length" :labels="labels" :series="series" y-min="dataMin" :height="280" />
-      <p v-else class="wheel-empty">尚无遥测数据。请启动串口采集程序，或回放交付包中的演示文件。</p>
+      <h2>{{ plot.label }}</h2>
+      <label>遥测分组 <select v-model="group"><option v-for="(item, key) in plotGroups" :key="key" :value="key">{{ item.label }}</option></select></label>
+      <LineChart v-if="samples.length && series.length" :labels="labels" :series="series" y-min="dataMin" :height="280" />
+      <p v-else class="wheel-empty">当前来源尚未提供此组数据。完整26通道需要对应遥测固件与raw26采集模式。</p>
     </div>
     <div class="wheel-card">
       <div class="wheel-heading"><h2>最新通道数据</h2><a href="/api/wheel/export.csv">导出最近 4000 帧 CSV</a></div>
-      <p class="wheel-muted">数据来源：{{ status?.acceptedFrames ? status.inputMode === 'REPLAY' ? '历史回放' : '串口采集' : '尚未接入' }} · {{ hostCompression ? '电脑接收经过时间' : '设备时间' }} {{ status?.latest?.deviceMillis ?? '—' }} ms · 实际编码 {{ status?.latest?.codec ?? '—' }} · {{ hostCompression ? '组批周期' : '实际周期' }} {{ status?.latest?.periodMs ?? '—' }} ms</p>
+      <p class="wheel-muted">数据来源：{{ status?.acceptedFrames ? status.inputMode === 'REPLAY' ? '历史回放' : '串口采集' : '尚未接入' }} · {{ hostTime ? '电脑接收经过时间' : '设备时间' }} {{ status?.latest?.deviceMillis ?? '—' }} ms · 实际编码 {{ status?.latest?.codec ?? '—' }} · {{ hostCompression ? '组批周期' : '实际周期' }} {{ status?.latest?.periodMs ?? '—' }} ms</p>
       <div class="wheel-values">
         <article v-for="(channel, i) in status?.channels ?? []" :key="channel">
-          <span>{{ channel }}</span><b>{{ hostCompression && i >= 3 && i <= 13 ? '未提供（预留）' : number(status?.latest?.values[i]) }}</b>
+          <span>{{ channel }}</span><b>{{ legacy && i >= 3 && i <= 13 ? '未提供（预留）' : number(status?.latest?.values[i]) }}</b>
         </article>
       </div>
       <p class="wheel-muted">压缩帧 {{ status?.compressedFrames ?? 0 }} · 重复/乱序帧 {{ status?.duplicateFrames ?? 0 }} · 设备重启判定 {{ status?.deviceResets ?? 0 }} · 拒绝批次 {{ status?.rejectedBatches ?? 0 }}</p>
-      <p class="wheel-muted">{{ hostCompression ? '电脑编号缺口只反映有效帧编号后的传输缺口；设备重启无法由旧协议可靠判定。回放时间是重新处理时间，预留通道不代表实际测量。' : '序号缺口包含设备忙时跳过的遥测。' }} 完整串口记录保存在采集电脑，服务端只保留当前会话最近4000帧。节省比例为服务启动以来累计值，不是网络实测带宽。</p>
+      <p class="wheel-muted">{{ hostTime ? '电脑编号缺口只反映有效帧编号后的传输缺口；设备重启无法由旧协议可靠判定。回放时间是重新处理时间，预留通道不代表实际测量。' : '序号缺口包含设备忙时跳过的遥测。' }} 完整串口记录保存在采集电脑，服务端只保留当前会话最近4000帧。节省比例为服务启动以来累计值，不是网络实测带宽。CSV包含当前来源全部通道，不限于当前曲线分组。</p>
     </div>
   </section>
 </template>

@@ -5,10 +5,10 @@
 #include <stddef.h>
 typedef struct { float x,y,z; } Vector;
 typedef struct { struct { Vector filter; } gyro; Vector gyroAngle; } Imu;
-typedef struct { uint8_t Print_flag, Protect_flag; float BatVin; } Cube;
+typedef struct { uint8_t Print_flag, Protect_flag, AutoStandUp, ManualUp, Cali_flag; float BatVin, BatVin_filter; } Cube;
 typedef struct { float Speed_filter; } Encoder;
-typedef struct { float Iq; } Foc;
-typedef struct { float x_f,y_f; } Remote;
+typedef struct { float Iq, Id; uint16_t Encoder_data; } Foc;
+typedef struct { float x_f,y_f,z_f; } Remote;
 extern Cube Cubli;
 extern Imu mpu6500;
 extern Encoder M1_Encoder,M2_Encoder,M3_Encoder;

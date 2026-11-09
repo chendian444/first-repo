@@ -1,0 +1,9 @@
+test_fragmentation_crc_and_resync (__main__.Raw26Test.test_fragmentation_crc_and_resync) ... ok
+test_host_compression_preserves_104_bytes_and_device_clock (__main__.Raw26Test.test_host_compression_preserves_104_bytes_and_device_clock) ... ok
+test_real_c_mapping_and_crc (__main__.Raw26Test.test_real_c_mapping_and_crc) ... PASS: 26-field mapping, raw122 <= DMA128, 100Hz scheduling, busy-slot gaps and no catch-up burst
+ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.337s
+
+OK

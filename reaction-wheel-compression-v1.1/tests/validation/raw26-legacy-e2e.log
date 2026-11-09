@@ -1,0 +1,16 @@
+历史回放完成: 50 帧; 无效候选=1; 丢弃字节=71; 未完成尾部=0 字节
+串口 /dev/pts/0@230400；原始记录 /tmp/legacy-e2e-4wvogluu/capture.legacy
+电脑压缩：周期控制上传组批；不改变板端采样。
+
+采集停止；未传数据可使用 --replay 从原始记录恢复。
+
+{
+  "legacyPTY": "PASS",
+  "onlyDeviceCommand": "a0ac08ba66",
+  "rawBytesExact": "PASS",
+  "hostAutoAndRawConfiguration": "PASS",
+  "serialRecording": "PASS",
+  "legacyReplayFrames": 50,
+  "csvLegacySemantics": "PASS",
+  "hardwareTested": false
+}

@@ -11,7 +11,7 @@ import urllib.error
 import urllib.request
 import uuid
 import sys
-from wheel_protocol import FrameParser, LegacyParser, config_command, encode
+from wheel_protocol import FrameParser, LegacyParser, Raw26Parser, config_command, encode
 
 OPEN_TELEMETRY = bytes.fromhex('A0 AC 08 BA 66')
 
@@ -33,7 +33,8 @@ class InputStream:
     """Legacy conversion has PC receipt time and PC sequence, never device sample time."""
     def __init__(self, protocol):
         self.legacy = protocol == 'legacy'
-        self.parser = LegacyParser() if self.legacy else FrameParser()
+        self.host = protocol in ('legacy', 'raw26')
+        self.parser = LegacyParser() if self.legacy else Raw26Parser() if protocol == 'raw26' else FrameParser()
         self.config = ('AUTO', 10)
         self.sequence = 0
         self.origin = time.monotonic()
@@ -50,6 +51,9 @@ class InputStream:
                 ticks = int((time.monotonic() - self.origin) * 1000)
                 yield encode(item, self.sequence, ticks, mode, period, source=1)
                 self.sequence += 1
+            elif self.host:
+                mode, period = self.config
+                yield encode(item['raw'], item['sequence'], item['deviceMillis'], mode, period, source=2)
             else:
                 yield item
 
@@ -57,7 +61,7 @@ class InputStream:
 def replay(args):
     stream = InputStream(args.protocol)
     parser = stream.parser
-    if stream.legacy:
+    if stream.host:
         stream.apply(http(args.backend, '/api/wheel/config'))
     session = 'replay-' + str(uuid.uuid4())
     batch, count = [], 0
@@ -94,7 +98,7 @@ def replay(args):
     print(f'历史回放完成: {count} 帧; 无效候选={parser.invalid_candidates}; '
           f'丢弃字节={parser.discarded_bytes}; 未完成尾部={len(parser.buffer)} 字节')
     if not count:
-        raise RuntimeError('没有有效帧，请检查 --protocol legacy/dcw1 是否与记录格式一致。')
+        raise RuntimeError('没有有效帧，请检查 --protocol legacy/raw26/dcw1 是否与记录格式一致。')
 
 
 def capture(args):
@@ -106,7 +110,7 @@ def capture(args):
         record = pathlib.Path(args.record)
     else:
         stamp = datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
-        suffix = 'legacy' if args.protocol == 'legacy' else 'dcw'
+        suffix = {'legacy':'legacy', 'raw26':'rwt', 'dcw1':'dcw'}[args.protocol]
         record = pathlib.Path('runtime') / f'wheel-{stamp}.{suffix}'
     record.parent.mkdir(parents=True, exist_ok=True)
     pending = queue.Queue(maxsize=100)  # <=2000 frames; serial capture never waits for HTTP.
@@ -117,7 +121,7 @@ def capture(args):
     parser = stream.parser
     with serial.Serial(args.port, args.baud, timeout=0.02, write_timeout=0.5) as port, record.open('xb') as log:
         print(f'串口 {args.port}@{args.baud}；原始记录 {record.resolve()}', flush=True)
-        print('电脑压缩旧协议：周期控制上传组批；不改变板端采样。' if stream.legacy
+        print('电脑压缩：周期控制上传组批；不改变板端采样。' if stream.host
               else '接收板端 DCW1 压缩遥测。', flush=True)
         if args.enable_stream:
             port.write(OPEN_TELEMETRY)
@@ -129,7 +133,7 @@ def capture(args):
                     if time.monotonic() >= next_control:
                         next_control = time.monotonic() + 2
                         cfg = http(args.backend, '/api/wheel/config')
-                        if stream.legacy:
+                        if stream.host:
                             stream.apply(cfg)
                         else:
                             port.write(config_command(cfg['mode'], cfg['periodMs']))
@@ -177,7 +181,7 @@ def capture(args):
                         if len(batch) >= 20:
                             enqueue()
                 now = time.monotonic()
-                flush_period = stream.config[1] / 1000 if stream.legacy else 0.1
+                flush_period = stream.config[1] / 1000 if stream.host else 0.1
                 if now - last_flush >= flush_period:
                     enqueue(); log.flush(); last_flush = now
                 if now - last_report >= 5:
@@ -196,8 +200,8 @@ def main():
     group = p.add_mutually_exclusive_group(required=True)
     group.add_argument('--port', help='串口，例如 COM4 或 /dev/ttyUSB0')
     group.add_argument('--replay', help='回放二进制记录，须与 --protocol 一致；不打开串口')
-    p.add_argument('--protocol', choices=('legacy', 'dcw1'), default='dcw1',
-                   help='legacy=旧固件0x23由电脑压缩；dcw1=板端压缩/已有DCW1回放（兼容默认）')
+    p.add_argument('--protocol', choices=('legacy', 'raw26', 'dcw1'), default='dcw1',
+                   help='raw26=完整26通道原始遥测，由电脑压缩；legacy=旧0x23；dcw1=板端压缩/已有DCW1回放（兼容默认）')
     p.add_argument('--backend', default='http://127.0.0.1:8082')
     p.add_argument('--baud', type=int, default=230400)
     p.add_argument('--record', help='串口原始记录路径；文件已存在时拒绝覆盖')
