@@ -1,3 +1,16 @@
+# AIoT设备通信与弱网自动化测试平台
+
+新增面向 AIOT 测试工程师实习面试的可运行原型：动量轮通过 USB-TTL 和电脑网关接入，支持设备身份、SQLite缓存续传、六种应用层弱网自动化及统计异常提示。保留原无线控制，不开发APP。
+
+- [平台源码与启动说明](aiot-platform/README.md)
+- [十天面试准备计划与追问](aiot-platform/面试准备-十天计划.md)
+- [运行包](deliverables/aiot-device-test-v0.1.zip)
+- [测试设计与验收](aiot-platform/测试方案与验收.md)
+
+已完成Linux软件/PTY/HTTP/浏览器验证，尚未完成真实动量轮、Windows COM6和手机无线验收。原有三系统与动量轮工程保留如下。
+
+---
+
 # 三个独立的数据压缩与网络传输软件
 
 当前源码、运行产物和启动脚本位于 [three-systems](three-systems)。完整交付包为 [three-systems-delivery.zip](three-systems-delivery.zip)。

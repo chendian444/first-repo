@@ -1,0 +1,92 @@
+[
+  {
+    "name": ".gitignore",
+    "sha256": "2f09a662227de6ca68ccc8db74dc58ed75e4b66d8950d26b4cceda9a323ae3a2",
+    "bytes": 237,
+    "firstLine": "# Generated build output and local runtime state"
+  },
+  {
+    "name": "26通道验证报告.md",
+    "sha256": "b9e8f1d3a6df337daa30efa870542253cbeca542a6d6d9eb2a4c924bd4b99843",
+    "bytes": 3163,
+    "firstLine": "# 完整26通道遥测软件验证报告"
+  },
+  {
+    "name": "start-legacy.ps1",
+    "sha256": "8e9a430cc74f8d4e2a8f44765038ac211608ae5513cc821d36749192a607838c",
+    "bytes": 813,
+    "firstLine": "param("
+  },
+  {
+    "name": "start-legacy.bat",
+    "sha256": "0ef571ed2d05a0e84818c581645bc7053ab1b817fcc28e639e67e074873c39f1",
+    "bytes": 101,
+    "firstLine": "@echo off"
+  },
+  {
+    "name": "start-raw26.ps1",
+    "sha256": "91b0c8946773090714320c2f02b75003f27d847d42fe2477cce7d099d38b089c",
+    "bytes": 812,
+    "firstLine": "param("
+  },
+  {
+    "name": "start-raw26.bat",
+    "sha256": "c8a305741fa89df2180e5b10a8ccc3e1bc485be71589eda005a908d71809c351",
+    "bytes": 100,
+    "firstLine": "@echo off"
+  },
+  {
+    "name": "板端压缩操作手册-历史方案.md",
+    "sha256": "a2019024921debfcfc5c7d08ccc6399b582543daa88ba160f69476123e254d71",
+    "bytes": 26994,
+    "firstLine": "> 历史板端方案：当前旧固件接入请使用[电脑压缩手册](完整压缩传输操作手册.md)，无需执行本文的编译烧录。"
+  },
+  {
+    "name": "电脑压缩验证报告.md",
+    "sha256": "df11ae8119225e39ee7889d7c49036f9cbd5e2b90843844146de5eeb4f43d158",
+    "bytes": 3491,
+    "firstLine": "# 旧固件电脑压缩验证报告"
+  },
+  {
+    "name": "旧固件电脑压缩操作手册.md",
+    "sha256": "e3a091d78ff73aacff4ace40dc16b1b3ca6aaefae267633b650c2282cdbb371a",
+    "bytes": 11098,
+    "firstLine": "# 旧固件动量轮 → 电脑压缩 → 压缩传输系统：完整操作手册"
+  },
+  {
+    "name": "完整压缩传输操作手册.md",
+    "sha256": "cfdeba8d052b8b395a128fe4dff869dfd769d4be73778b3d25e128b62f605f87",
+    "bytes": 11386,
+    "firstLine": "# 动量轮完整26通道串口遥测 → 电脑压缩传输"
+  },
+  {
+    "name": "集成说明.md",
+    "sha256": "f88f52df0c434c149680813fa42107f5709a0605463b001fcec74ca9618fb040",
+    "bytes": 14480,
+    "firstLine": "> **2026-11-09 当前接入已支持完整26通道。** 使用[新版操作手册](完整压缩传输操作手册.md)。raw26串口为122字节RWT1原始帧，Python压缩、Java解压；DCW1扩展为来源标记2/通道26/104字节原始载荷，RAW最大126字节。旧来源0/1与16通道仍兼容。"
+  },
+  {
+    "name": "验证报告.md",
+    "sha256": "c9716ac82234382885e0101c63810f66432635ebb95ef4b5f977c58569f95e00",
+    "bytes": 4541,
+    "firstLine": "> 2026-11-09：本次完整26通道结果见[26通道验证报告](26通道验证报告.md)。以下保留历史测试记录。"
+  },
+  {
+    "name": "README.md",
+    "sha256": "6921e7d0eeb79dfd39fb1056ddf3b034f252e5d852888f4590895baa4190c90d",
+    "bytes": 2222,
+    "firstLine": "# 动量轮完整串口遥测与电脑压缩传输"
+  },
+  {
+    "name": "修订清单.json",
+    "sha256": "f8b82bb6cb71b0d950f5a29b24a2c1b3e851f17d22d5a0952ad0f71aaea93e1d",
+    "bytes": 375,
+    "firstLine": "{"
+  },
+  {
+    "name": "Keil构建修订说明.md",
+    "sha256": "c680b31503c79e6a68f9e97eeb230a4ebf8521d202320c73efb681ad159d6923",
+    "bytes": 3201,
+    "firstLine": "# v1.1 Keil 构建修订说明"
+  }
+]

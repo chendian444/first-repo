@@ -1,0 +1,2 @@
+# Server/replay/testing use Python standard library. Serial acquisition only:
+pyserial==3.5

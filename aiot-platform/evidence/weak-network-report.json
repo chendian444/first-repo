@@ -1,0 +1,152 @@
+{
+  "kind": "application_http_fault_injection",
+  "inputOrigin": "recorded_replay",
+  "hardwareTested": false,
+  "seed": 2026,
+  "results": [
+    {
+      "scenario": "baseline",
+      "profile": {
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0,
+        "ackLoss": 0,
+        "offline": 0,
+        "kbps": 0
+      },
+      "seed": 2026,
+      "session": "7b4f86b5055545cf816d69d2170f527a",
+      "expectedFrames": 100,
+      "acceptedFrames": 100,
+      "pendingBatches": 0,
+      "initialBatches": 5,
+      "attempts": 5,
+      "injectedFaults": 0,
+      "duplicateACKs": 0,
+      "p95DeliveryMs": 4.357315999982347,
+      "elapsedSeconds": 0.021450743999935185,
+      "passed": true
+    },
+    {
+      "scenario": "latency",
+      "profile": {
+        "delay": 0.03,
+        "jitter": 0.02,
+        "loss": 0,
+        "ackLoss": 0,
+        "offline": 0,
+        "kbps": 0
+      },
+      "seed": 2026,
+      "session": "cbea6def8d96447bb1168e1f367d2df2",
+      "expectedFrames": 100,
+      "acceptedFrames": 100,
+      "pendingBatches": 0,
+      "initialBatches": 5,
+      "attempts": 5,
+      "injectedFaults": 0,
+      "duplicateACKs": 0,
+      "p95DeliveryMs": 44.16520799998125,
+      "elapsedSeconds": 0.17541841599995678,
+      "passed": true
+    },
+    {
+      "scenario": "loss",
+      "profile": {
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0.3,
+        "ackLoss": 0,
+        "offline": 0,
+        "kbps": 0
+      },
+      "seed": 2026,
+      "session": "3cad333f59774642985e03a1f83ef05e",
+      "expectedFrames": 100,
+      "acceptedFrames": 100,
+      "pendingBatches": 0,
+      "initialBatches": 5,
+      "attempts": 8,
+      "injectedFaults": 3,
+      "duplicateACKs": 0,
+      "p95DeliveryMs": 6.925518000002739,
+      "elapsedSeconds": 0.11995219599998563,
+      "passed": true
+    },
+    {
+      "scenario": "ack_loss",
+      "profile": {
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0,
+        "ackLoss": 0.4,
+        "offline": 0,
+        "kbps": 0
+      },
+      "seed": 2026,
+      "session": "a013c97937964930b1315fb27f00bc80",
+      "expectedFrames": 100,
+      "acceptedFrames": 100,
+      "pendingBatches": 0,
+      "initialBatches": 5,
+      "attempts": 7,
+      "injectedFaults": 2,
+      "duplicateACKs": 2,
+      "p95DeliveryMs": 7.824005999964356,
+      "elapsedSeconds": 0.09154792300000736,
+      "passed": true
+    },
+    {
+      "scenario": "disconnect",
+      "profile": {
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0,
+        "ackLoss": 0,
+        "offline": 0.4,
+        "kbps": 0
+      },
+      "seed": 2026,
+      "session": "f2a67b59468244438a89c219db373ef7",
+      "expectedFrames": 100,
+      "acceptedFrames": 100,
+      "pendingBatches": 0,
+      "initialBatches": 5,
+      "attempts": 18,
+      "injectedFaults": 13,
+      "duplicateACKs": 0,
+      "p95DeliveryMs": 6.762591999972756,
+      "elapsedSeconds": 0.42513104400006796,
+      "passed": true
+    },
+    {
+      "scenario": "bandwidth",
+      "profile": {
+        "delay": 0,
+        "jitter": 0,
+        "loss": 0,
+        "ackLoss": 0,
+        "offline": 0,
+        "kbps": 128
+      },
+      "seed": 2026,
+      "session": "12ec61f1fd244b53a6824719a63c1811",
+      "expectedFrames": 100,
+      "acceptedFrames": 100,
+      "pendingBatches": 0,
+      "initialBatches": 5,
+      "attempts": 5,
+      "injectedFaults": 0,
+      "duplicateACKs": 0,
+      "p95DeliveryMs": 204.04258299993216,
+      "elapsedSeconds": 1.0204534769999327,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "analysis": [
+    "ACK丢失后的同批次重试必须去重；请求丢失不代表设备采样丢失。",
+    "延迟统计包含注入等待、HTTP与服务处理，不是蓝牙时延或单程网络时延。",
+    "该报告验证应用重试与恢复，实机串口、Wi-Fi射频和电池状态需另行验收。"
+  ]
+}

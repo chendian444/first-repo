@@ -1,0 +1,11 @@
+test_admin_scope_and_disabled_device (test_platform.PlatformTests.test_admin_scope_and_disabled_device) ... ok
+test_auth_validation_atomicity_and_conflict (test_platform.PlatformTests.test_auth_validation_atomicity_and_conflict) ... ok
+test_baseline_outlier_nonfinite_legacy_fields_and_persistence (test_platform.PlatformTests.test_baseline_outlier_nonfinite_legacy_fields_and_persistence) ... ok
+test_outbox_restart_lost_ack_and_capacity (test_platform.PlatformTests.test_outbox_restart_lost_ack_and_capacity) ... ok
+test_serial_gateway_real_process (test_platform.PlatformTests.test_serial_gateway_real_process) ... ok
+test_six_weak_network_profiles (test_platform.PlatformTests.test_six_weak_network_profiles) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 5.957s
+
+OK

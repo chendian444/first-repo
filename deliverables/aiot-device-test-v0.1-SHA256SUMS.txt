@@ -1,0 +1,1 @@
+24f8c877dfc715288402ceb9b36c532b44545df620bbfc57d5d497ef74bada6c  aiot-device-test-v0.1.zip
