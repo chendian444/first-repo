@@ -1,0 +1,1 @@
+SYNTHETIC SOFTWARE INPUT. Not measured from the wheel. 100 Hz sampling, 10 Hz sine; random seed 2026.

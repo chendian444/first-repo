@@ -1,3 +1,13 @@
+## 基于动量轮的 Linux 数据采集与信号分析系统
+
+2026-11-19：保留上传的ESP32 Wi-Fi遥控，独立串口遥测；新增Linux C采集/协议解析/PC压缩、SQLite续传、离线滤波与频谱。支持旧协议及已有raw26协议，未修改AT32控制固件。
+
+- [源码与整体操作步骤](wheel-linux/README.md)
+- [完整运行包](deliverables/wheel-linux-data-analysis-v1.0.zip)
+- [软件验证与实机边界](wheel-linux/evidence/验证报告.md)
+
+---
+
 # AIoT设备通信与弱网自动化测试平台
 
 新增面向 AIOT 测试工程师实习面试的可运行原型：动量轮通过 USB-TTL 和电脑网关接入，支持设备身份、SQLite缓存续传、六种应用层弱网自动化及统计异常提示。保留原无线控制，不开发APP。

@@ -1,0 +1,11 @@
+test_filter_fft_and_missing_time_boundaries (test_system.SystemTest.test_filter_fft_and_missing_time_boundaries) ... ok
+test_full_bit_exact_crc_resync_and_c_python_encoding (test_system.SystemTest.test_full_bit_exact_crc_resync_and_c_python_encoding) ... ok
+test_legacy_reserved_semantics_raw_fallback (test_system.SystemTest.test_legacy_reserved_semantics_raw_fallback) ... ok
+test_no_overwrite_and_invalid_options (test_system.SystemTest.test_no_overwrite_and_invalid_options) ... ok
+test_real_termios_poll_fragmentation_and_command_boundary (test_system.SystemTest.test_real_termios_poll_fragmentation_and_command_boundary) ... ok
+test_spool_ack_loss_reopen_capacity_and_binding (test_system.SystemTest.test_spool_ack_loss_reopen_capacity_and_binding) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.680s
+
+OK

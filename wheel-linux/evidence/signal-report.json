@@ -1,0 +1,30 @@
+{
+  "input": "samples.csv",
+  "channel": "gyro_x",
+  "source": "RAW26_DEVICE_TIME",
+  "samples": 1000,
+  "invalidValues": 0,
+  "sequenceBreaks": 0,
+  "sampleRateHz": 100.0,
+  "sampleRateBasis": "device_timestamps",
+  "movingAverageWindow": 5,
+  "nominalFullWindowDelayMs": 20.0,
+  "statistics": {
+    "min": -2.08993983,
+    "max": 2.03657079,
+    "mean": 0.0003612219936500045,
+    "std": 1.4169140683778414,
+    "rms": 1.4169141144220332,
+    "outlierCount": 0,
+    "outlierThreshold": 10.792315562112
+  },
+  "spectrum": {
+    "peakHz": 10.0,
+    "amplitude": 2.001686213367269,
+    "resolutionHz": 0.1,
+    "window": "Hann",
+    "dcRemoved": true
+  },
+  "notes": [],
+  "limitation": "Offline analysis only; no motor control, no battery health diagnosis. Constant/nonstationary signals can make spectral peaks uninformative."
+}

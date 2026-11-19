@@ -1,0 +1,6 @@
+make: Entering directory '/workspace/first-repo/wheel-linux'
+mkdir -p build
+cc -std=c11 -O2 -g -Wall -Wextra -Werror -Wpedantic src/collector.c -o build/collector
+mkdir -p build
+cc -std=c11 -O1 -g -Wall -Wextra -Werror -fsanitize=address,undefined -fno-omit-frame-pointer src/collector.c -o build/collector-sanitize
+make: Leaving directory '/workspace/first-repo/wheel-linux'

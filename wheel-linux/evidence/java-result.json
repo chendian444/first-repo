@@ -1,0 +1,9 @@
+{
+  "origin": "synthetic_fixture",
+  "hardwareTested": false,
+  "cFrames": 1000,
+  "javaFrames": 1000,
+  "all104BytesExact": true,
+  "deviceTimeExact": true,
+  "spoolEmpty": true
+}

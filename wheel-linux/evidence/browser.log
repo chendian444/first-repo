@@ -1,0 +1,1 @@
+PASS: C-produced 26-channel telemetry visible in compression UI; Wi-Fi console labels visible; no page script errors. Screenshots use synthetic telemetry and localhost control mock.

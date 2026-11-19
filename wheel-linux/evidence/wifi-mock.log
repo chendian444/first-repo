@@ -1,0 +1,28 @@
+[1] GET /
+  - html bytes = 4361
+[2] POST /api/config -> 127.0.0.1:8888 @50Hz
+  - cfg = 127.0.0.1:8888
+[3] POST /api/ping
+  - ok = True
+[4] POST /api/state (wx=150, wy=-80, wz=0)
+  - state = {'ch0': 128, 'ch1': 128, 'ch2': 128, 'raw': False, 'wx': 150.0, 'wy': -80.0, 'wz': 0.0}
+[5] POST /api/enable = true
+  - enabled = True
+[6] 等待 1.2s 后检查 status
+  - sent=60 acks=60 errs=0 seq=60
+[7] POST /api/cmd edge_auto
+  - ok = True
+[8] 回中并停止发送
+  - enabled = False
+
+--- 最后 8 条日志 ---
+    [07:47:20]   指令帧数  : 2 帧（仅在发送状态生效）
+    [07:47:20] ========================================================
+    [07:47:38] CONFIG -> 127.0.0.1:8888 @ 50Hz
+    [07:47:38] PING -> 127.0.0.1:8888
+    [07:47:38] PONG from 127.0.0.1 uptime=16s
+    [07:47:38] STREAM START
+    [07:47:39] CMD edge_auto -> btn=0x40 zl=0 zr=0 (2 frames)
+    [07:47:40] STREAM STOP
+
+结果: PASS ?
