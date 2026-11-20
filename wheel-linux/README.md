@@ -2,7 +2,7 @@
 
 保留你新增的 ESP32-C3 Wi-Fi 遥控；用 AT32 Debug 的 USART3 独立采集遥测。Linux C 负责协议解析、CSV与原始记录、电脑端ZRLE压缩；Python负责持久化上传和离线信号分析。现有Java/Vue数据压缩传输系统继续接收DCW1，不改变电机控制算法，不开发APP。
 
-**[从零开始的整体操作步骤](docs/整体操作步骤.md)** · [Wi-Fi链路核对](docs/WiFi链路核对.md) · [验证报告](evidence/验证报告.md)
+**[你的Windows + VirtualBox + Rocky完整步骤](docs/Windows-VirtualBox-Rocky完整操作步骤.md)** · [通用Linux步骤](docs/整体操作步骤.md) · [Wi-Fi链路核对](docs/WiFi链路核对.md) · [验证报告](evidence/验证报告.md)
 
 ```text
 现有遥控浏览器 :9001 → Flask → UDP :8888 → ESP32-C3 → 控制UART → AT32
