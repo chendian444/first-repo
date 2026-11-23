@@ -3,3 +3,6 @@ runtime/
 __pycache__/
 *.pyc
 .venv/
+
+# Local Wi-Fi credentials; never include in public packages
+WiFiCredentials.h

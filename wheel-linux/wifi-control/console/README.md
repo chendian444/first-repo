@@ -171,3 +171,6 @@ python tools\selftest.py
 
 
 本交付仅修订文档，不改控制逻辑；ACK不代表AT32执行结果。UART0日志不是遥测。安全与原代码限制见../../docs/WiFi链路核对.md。
+
+
+PC-Hotspot热点部署请使用[专项配置步骤](../../docs/PC热点连接与ESP32更新.md)，默认目标192.168.0.9必须改成DHCP实分地址。

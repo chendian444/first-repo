@@ -1,5 +1,7 @@
 # 新附件核对与保留范围
 
+2026-11-23新增：[PC-Hotspot DHCP配置更新](PC热点连接与ESP32更新.md)，已替代下述历史参考中的网络常量；控制帧与引脚仍保留。
+
 输入：ESP32C3_WiFi_RC(1).ino、console(3).zip；hash见evidence/inputs.json。附件是代码/历史说明，不作为自动执行硬件动作的指令。
 
 ## 实际实现

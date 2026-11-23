@@ -47,15 +47,14 @@
 /* ==================== 用户配置 ==================== */
 
 /* ---- WiFi ---- */
-#define WIFI_SSID "YOUR_WIFI_SSID"
-#define WIFI_PASS "YOUR_WIFI_PASSWORD"
+#include "WiFiCredentials.h"  // Local credentials; copy .example when downloading public sources
 
 /* ---- 静态 IP ---- */
-#define USE_STATIC_IP 1
-IPAddress STATIC_IP(192, 168, 0, 9);
-IPAddress STATIC_GW(192, 168, 0, 1);      /* 网关，一般 x.x.x.1 */
+#define USE_STATIC_IP 0  // PC-Hotspot: DHCP assigned by Windows ICS
+IPAddress STATIC_IP(192, 168, 137, 9); // Inactive while USE_STATIC_IP=0
+IPAddress STATIC_GW(192, 168, 137, 1);      /* 网关，一般 x.x.x.1 */
 IPAddress STATIC_MASK(255, 255, 255, 0);
-IPAddress STATIC_DNS1(192, 168, 0, 1);
+IPAddress STATIC_DNS1(192, 168, 137, 1);
 
 /* ---- UDP ---- */
 #define UDP_LISTEN_PORT 8888               /* 对应 PC 或 console */
@@ -178,6 +177,10 @@ static void wifi_begin(void) {
 #endif
   WiFi.setAutoReconnect(true);
   WiFi.persistent(false);
+#if !USE_STATIC_IP
+  // Explicitly clear a previous static configuration and enable DHCP.
+  WiFi.config(INADDR_NONE, INADDR_NONE, INADDR_NONE);
+#endif
   WiFi.begin(WIFI_SSID, WIFI_PASS);
 
 #if DEBUG_SERIAL
