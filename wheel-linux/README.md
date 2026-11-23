@@ -1,5 +1,7 @@
 # 基于动量轮的 Linux 数据采集与信号分析系统 v1.0
 
+2026-11-23：旧协议仅5个有效字段时，使用[针对本ZIP的AT32两文件raw26补丁说明](../reaction-wheel-compression-v1.1/firmware-raw26-pack/替换说明.md)。不要把只适用于原始工程的Debug.c覆盖方案混用到本集成工程。
+
 2026-11-23 PC自建热点配置：[ESP32 DHCP更新步骤](docs/PC热点连接与ESP32更新.md)。公开源码需从WiFiCredentials.h.example复制本地头文件并填写密码；旧完整运行包中的固件参考未同步此补丁。
 
 保留你新增的 ESP32-C3 Wi-Fi 遥控；用 AT32 Debug 的 USART3 独立采集遥测。Linux C 负责协议解析、CSV与原始记录、电脑端ZRLE压缩；Python负责持久化上传和离线信号分析。现有Java/Vue数据压缩传输系统继续接收DCW1，不改变电机控制算法，不开发APP。

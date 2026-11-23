@@ -1,0 +1,11 @@
+test_integrated_poll_26_fields_crc_and_host_encoding (__main__.PackRaw26Test.test_integrated_poll_26_fields_crc_and_host_encoding) ... PASS: 26-field mapping, raw122 <= DMA128, 100Hz scheduling, busy-slot gaps and no catch-up burst
+ok
+test_preparer_copies_source_without_control_changes (__main__.PackRaw26Test.test_preparer_copies_source_without_control_changes) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.152s
+
+OK
+Prepared: /tmp/tmp4pvl20vy/new
+Replaced only UserFile/WheelTelemetry.c and WheelTelemetry.h; control and UART2 preserved from source.
+No licensed Keil build, flash/Verify or hardware timing validation performed.
